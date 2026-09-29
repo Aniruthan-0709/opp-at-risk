@@ -1,0 +1,19 @@
+# Inputs: run sql/closed_opps.sql and sql/open_opps.sql in Snowflake,
+# save the results as CSVs at these paths.
+input:
+  closed_opps_csv: data/input/closed_opps.csv
+  open_opps_csv: data/input/open_opps.csv
+
+# Time windows applied to closed_opps by TRUE_CLOSE_DATE.
+# Roll these forward each quarter: once a quarter fully closes out, it
+# joins training and the next quarter becomes the out-of-time eval.
+windows:
+  train_cutoff: "2026-07-31"   # closed on/before -> train/test pool (through FY26 Q2)
+  eval_start: "2026-08-01"     # closed in [eval_start, eval_end] -> out-of-time eval (FY26 Q3)
+  eval_end: "2026-10-31"
+
+output:
+  processed_dir: data/processed
+  reports_dir: reports
+  models_dir: models
+  prediction_log: reports/prediction_log.csv

@@ -1,0 +1,16 @@
+logistic_regression:
+  # Sanity-check baseline only. StandardScaler in the pipeline is required.
+  max_iter: 1000
+  class_weight: "balanced"
+  random_state: 42
+
+xgboost:
+  n_estimators: 200
+  max_depth: 4
+  learning_rate: 0.05
+  random_state: 42
+  tree_method: "hist"   # required for enable_categorical=True
+
+mlflow:
+  tracking_uri: "sqlite:///mlflow.db"
+  experiment_name: "opp_win_propensity_v2"

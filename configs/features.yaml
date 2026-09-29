@@ -1,0 +1,81 @@
+target: LABEL_WON
+id_column: OPPORTUNITY_ID
+
+# Never model inputs. Kept in processed files for grouping, splitting, routing, reporting.
+metadata_columns:
+  - OPPORTUNITY_ID
+  - ACCOUNTID
+  - INITIATIVE__C
+  - TRUE_CYCLE_START
+  - TRUE_CLOSE_DATE
+  - TRUE_CLOSE_FY
+  - TRUE_CLOSE_QUARTER_NUM
+  - IS_AUTO_CLOSED          # stratification + reporting only
+  - DAYS_IN_SUSPECT_TOTAL   # only used to generate Suspect snapshots
+  - SNAPSHOT_AGE_DAYS
+  - SAMPLE_WEIGHT
+  - OUTCOME_TYPE
+  - FY_QUARTER
+
+# String columns -> pandas category dtype (categories fit on train only).
+categorical_columns:
+  - VERTICAL
+  - SECTOR
+  - DOMINANT_LEADSOURCE
+  - RECORDTYPE_NAME
+  - BILLINGSTATE
+  - AMOUNT_BUCKET
+
+# Day-one, static features: used by BOTH models.
+static_features:
+  - VERTICAL
+  - SECTOR
+  - DOMINANT_LEADSOURCE
+  - HEADCOUNT
+  - RECORDTYPE_NAME
+  - BILLINGSTATE
+  - IS_REMOTE_GEO
+  - PRIOR_ACCOUNT_WIN_COUNT
+  - PCT_CONTACTS_CAN_CONTACT
+  - ACTIVE_CONTACT_COUNT
+  - JOBCAT_EXECUTIVE_COUNT
+  - JOBCAT_FINANCE_PROCUREMENT_COUNT
+  - JOBCAT_OPERATIONS_COUNT
+  - JOBCAT_IT_COUNT
+  - JOBCAT_PEOPLE_GOVERNANCE_COUNT
+  - JOBCAT_MARKETING_COUNT
+  - JOBCAT_VERTICAL_ROLE_COUNT
+  - JOBCAT_UNKNOWN_COUNT
+
+suspect:
+  # Opps that have never left Suspect (MAX_STAGE_REACHED == 1) at scoring time.
+  extra_features:
+    - DAYS_IN_SUSPECT
+  # Training snapshots: every historical closed deal contributes a row at
+  # age 0, 30, 60, ... days for as long as it was still sitting in Suspect.
+  snapshot_interval_days: 30
+  max_snapshot_age_days: 365   # scoring clips DAYS_IN_SUSPECT to this too
+
+prospect_plus:
+  # Opps that have reached Prospect or later at any point (MAX_STAGE_REACHED >= 2).
+  extra_features:
+    - AMOUNT
+    - AMOUNT_BUCKET
+    - MAX_STAGE_REACHED
+    - BACKWARD_MOVE_COUNT
+    - CYCLE_LENGTH_DAYS
+  include_activity_features: true   # per-stage activity counts + derived ratios
+
+split:
+  test_fraction: 0.2
+  random_state: 42
+  # Quarter x outcome strata smaller than this are merged into an
+  # outcome-only stratum so the stratified split can't fail on tiny groups.
+  min_stratum_size: 5
+
+thresholds:
+  win_probability: 0.5        # genuine model threshold, not a business target
+  min_segment_size: 30        # segments below this -> LOW CONFIDENCE
+  min_confident_bin_size: 15  # bins below this -> LOW CONFIDENCE
+  top_n_features_for_bins: 5
+  top_n_reasons_per_opp: 5
