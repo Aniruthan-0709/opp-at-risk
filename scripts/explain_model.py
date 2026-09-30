@@ -54,7 +54,7 @@ def explain(model_name: str, data_cfg: dict) -> None:
                     cvm["call_total_importance"], cvm["meet_total_importance"], ratio)
 
     logger.info("=" * 70)
-    logger.info("DIRECTION (weighted mean signed SHAP; skewed toward LOST by the ~88%% loss base rate)")
+    logger.info("DIRECTION (weighted mean signed SHAP; skewed toward LOST because most rows are losses)")
     for _, r in directional_summary(shap_values, features, weights).iterrows():
         logger.info("  %-40s %+.5f  (%s)", r["feature"], r["mean_signed_shap"], r["direction"])
 

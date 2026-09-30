@@ -36,6 +36,13 @@ opp_true_start AS (
     FROM DATALAB_SANDBOX.GS_REPORTING.OPTYS_STAGE_DURATION_WEIGHTED
 ),
 
+-- One row per opp (source repeats IDs) — identical to closed_opps.sql.
+record_details AS (
+    SELECT ID, RECORDTYPE_NAME
+    FROM DATALAB_SANDBOX.GS_SILVER.OPTYS_DIM_RECORD_DETAILS
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY ID ORDER BY RECORDTYPE_NAME) = 1
+),
+
 -- Chronologically last real-funnel stage row = the current stage for an open opp.
 current_stage AS (
     SELECT
@@ -63,8 +70,9 @@ opp_base AS (
         CASE WHEN g.OWNER_NAME = 'B2B_REMOTE GEO' THEN 1 ELSE 0 END AS IS_REMOTE_GEO,
         CASE WHEN g.OWNER_NAME ILIKE '%PROSPECT DESK%' THEN 1 ELSE 0 END AS IS_PROSPECT_DESK,
         CASE WHEN g.OWNER_NAME = 'B2B DEAD QUEUE' THEN 1 ELSE 0 END AS IS_DEAD_QUEUE,
-        IFF(u.ISACTIVE, 1, 0) AS OWNER_IS_ACTIVE,
-        IFF(u.IS_NON_HUMAN_USER__C, 1, 0) AS OWNER_IS_NON_HUMAN,
+        -- USER_V stores these as text; unknown stays NULL so the gate never fires on missing data
+        CASE TRY_TO_BOOLEAN(u.ISACTIVE) WHEN TRUE THEN 1 WHEN FALSE THEN 0 END AS OWNER_IS_ACTIVE,
+        CASE TRY_TO_BOOLEAN(u.IS_NON_HUMAN_USER__C) WHEN TRUE THEN 1 WHEN FALSE THEN 0 END AS OWNER_IS_NON_HUMAN,
         ts.TRUE_CYCLE_START,
         GREATEST(DATEDIFF('day', ts.TRUE_CYCLE_START, cs.CURRENT_STAGE_START), 0) AS CYCLE_LENGTH_DAYS,
         DATEDIFF('day', ts.TRUE_CYCLE_START, CURRENT_DATE()) AS DAYS_OPEN,
@@ -78,7 +86,7 @@ opp_base AS (
     FROM DATALAB_SANDBOX.GS_REPORTING.OPTYS_GOLD g
     JOIN opp_true_start ts      ON ts.OPPORTUNITY_ID = g.ID
     LEFT JOIN current_stage cs  ON cs.OPPORTUNITY_ID = g.ID
-    LEFT JOIN DATALAB_SANDBOX.GS_SILVER.OPTYS_DIM_RECORD_DETAILS rd ON rd.ID = g.ID
+    LEFT JOIN record_details rd ON rd.ID = g.ID
     LEFT JOIN EDH.SFDC.ACCOUNT_V a ON a.ID = g.ACCOUNTID
     LEFT JOIN EDH.SFDC.USER_V u    ON u.ID = g.OWNERID
     WHERE TRIM(g.STAGENAME) NOT IN ('Closed Won / Implemented', 'Closed Lost.')
@@ -230,8 +238,8 @@ event_features AS (
 ),
 
 -- ---------------------------------------------------------------------------
--- CONTACTS (current snapshot per account, active contacts only)
--- If ACTIVE__C is stored as text in EDH, change to ACTIVE__C = 'true'.
+-- CONTACTS (current snapshot per account, active contacts only: STATUS = 'Active')
+-- Keep identical to closed_opps.sql.
 -- ---------------------------------------------------------------------------
 contact_features AS (
     SELECT
@@ -253,7 +261,7 @@ contact_features AS (
             ), 1, 0)) AS JOBCAT_UNKNOWN_COUNT,
         MODE(LEADSOURCE) AS DOMINANT_LEADSOURCE
     FROM EDH.SFDC.CONTACT_V
-    WHERE ACTIVE__C = TRUE
+    WHERE STATUS = 'Active'
     GROUP BY ACCOUNTID
 )
 

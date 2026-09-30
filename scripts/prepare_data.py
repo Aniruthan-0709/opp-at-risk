@@ -50,10 +50,14 @@ def main() -> None:
 
     cutoff = pd.Timestamp(windows["train_cutoff"])
     eval_start, eval_end = pd.Timestamp(windows["eval_start"]), pd.Timestamp(windows["eval_end"])
-    pool = closed[closed["TRUE_CLOSE_DATE"] <= cutoff]
-    eval_df = closed[(closed["TRUE_CLOSE_DATE"] >= eval_start) & (closed["TRUE_CLOSE_DATE"] <= eval_end)]
+    close_day = closed["TRUE_CLOSE_DATE"].dt.normalize()   # drop time of day so no deal falls between windows
+    pool = closed[close_day <= cutoff]
+    eval_df = closed[(close_day >= eval_start) & (close_day <= eval_end)]
     logger.info("Train/test pool (closed <= %s): %d opps | Eval window (%s..%s): %d opps",
                 cutoff.date(), len(pool), eval_start.date(), eval_end.date(), len(eval_df))
+    unassigned = len(closed) - len(pool) - len(eval_df)
+    if unassigned:
+        logger.warning("%d closed opps fall outside both windows (after eval_end or missing dates)", unassigned)
     if eval_df.empty:
         logger.warning("Eval window is empty — check windows in configs/data.yaml.")
 

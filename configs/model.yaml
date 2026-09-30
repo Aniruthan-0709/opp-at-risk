@@ -11,6 +11,13 @@ xgboost:
   random_state: 42
   tree_method: "hist"   # required for enable_categorical=True
 
+calibration:
+  # Maps raw scores to real win rates, fitted on the holdout TEST set (never Q3).
+  #   sigmoid  - Platt scaling: smooth, stable on small data, keeps ranking exactly
+  #   isotonic - flexible step curve; needs more data, can tie deals together
+  #   none     - use raw scores
+  method: "sigmoid"
+
 mlflow:
   tracking_uri: "sqlite:///mlflow.db"
   experiment_name: "opp_win_propensity_v2"

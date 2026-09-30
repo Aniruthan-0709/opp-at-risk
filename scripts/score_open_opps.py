@@ -6,7 +6,7 @@ Scores every currently open opportunity from data/input/open_opps.csv.
      Re-scored automatically on a later run once reassigned.
   2. Route: MAX_STAGE_REACHED == 1 -> suspect model (DAYS_IN_SUSPECT = days open,
      clipped to the trained range); >= 2 -> prospect_plus model.
-  3. Score, and flag Prospect Desk (untriaged) and Dead Queue opps.
+  3. Score (WIN_PROBABILITY is calibrated; RAW_SCORE kept for transparency), and flag Prospect Desk (untriaged) and Dead Queue opps.
   4. Append every score to reports/prediction_log.csv (date + model used),
      so predictions can be checked against real outcomes once deals close.
 
@@ -39,7 +39,7 @@ logger = setup_logging("score_open_opps")
 
 OUTPUT_COLUMNS = [
     "OPPORTUNITY_ID", "ACCOUNTID", "VERTICAL", "INITIATIVE__C", "CURRENT_STAGENAME", "MAX_STAGE_REACHED",
-    "AMOUNT", "DAYS_OPEN", "OWNER_NAME", "MODEL_USED", "WIN_PROBABILITY", "PREDICTED_OUTCOME",
+    "AMOUNT", "DAYS_OPEN", "OWNER_NAME", "MODEL_USED", "WIN_PROBABILITY", "RAW_SCORE", "PREDICTED_OUTCOME",
     "IS_PROSPECT_DESK", "IS_DEAD_QUEUE",
 ]
 ALERT_COLUMNS = [
@@ -82,7 +82,8 @@ def main() -> None:
             (processed / f"open_{m}_scored.csv").unlink(missing_ok=True)  # don't leave a stale file for reasons.py
             continue
         artifact = load_artifact(out["models_dir"], m)
-        part["WIN_PROBABILITY"] = predict_proba(artifact, part)
+        part["RAW_SCORE"] = predict_proba(artifact, part, calibrated=False)
+        part["WIN_PROBABILITY"] = predict_proba(artifact, part)   # calibrated
         part["MODEL_TRAINED_AT"] = artifact["trained_at"]
         part.to_csv(processed / f"open_{m}_scored.csv", index=False)
         logger.info("%s: scored %d opps (mean win probability %.3f)", m, len(part), part["WIN_PROBABILITY"].mean())
@@ -102,7 +103,7 @@ def main() -> None:
     # 4. Prediction log (append)
     log_path = Path(out["prediction_log"])
     log_rows = scored[["OPPORTUNITY_ID", "CURRENT_STAGENAME", "MAX_STAGE_REACHED", "MODEL_USED",
-                       "WIN_PROBABILITY", "MODEL_TRAINED_AT"]].assign(SCORED_AT=date.today().isoformat())
+                       "WIN_PROBABILITY", "RAW_SCORE", "MODEL_TRAINED_AT"]].assign(SCORED_AT=date.today().isoformat())
     log_rows.to_csv(log_path, mode="a", header=not log_path.exists(), index=False)
     logger.info("Appended %d rows to %s", len(log_rows), log_path)
 

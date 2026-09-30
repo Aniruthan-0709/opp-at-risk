@@ -1,14 +1,14 @@
 # Data, models, and outputs contain customer data or are regenerated — never commit
-data/*
-!data/input/
-data/input/*
-!data/input/.gitkeep
-models/
-reports/
-logs/
-mlruns/
-mlflow.db
-configs/*_feature_list.json
+/data/*
+!/data/input/
+/data/input/*
+!/data/input/.gitkeep
+/models/
+/reports/
+/logs/
+/mlruns/
+/mlflow.db
+/configs/*_feature_list.json
 
 # Environment
 venv/

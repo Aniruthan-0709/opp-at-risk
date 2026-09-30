@@ -27,8 +27,11 @@ from src.logging_config import setup_logging
 from src.models.train import (
     apply_saved_categories,
     build_logistic_pipeline,
+    compute_metrics,
     evaluate,
+    fit_and_attach_calibrator,
     load_model_dataset,
+    predict_proba,
     train_and_save_xgboost,
     weights_or_none,
 )
@@ -66,9 +69,17 @@ def train_one(model_name: str, data_cfg: dict, features_cfg: dict, model_cfg: di
             model_name, train_df, features, categorical, target, model_cfg["xgboost"], data_cfg["output"]["models_dir"],
         )
         X_test = apply_saved_categories(test_df[features], categories)
-        metrics = evaluate(model, X_test, test_df[target], f"{model_name} XGBoost (test)", threshold, w_test)
+        metrics = evaluate(model, X_test, test_df[target], f"{model_name} XGBoost (test, raw)", threshold, w_test)
+
+        # Calibration is fitted on the test set, so calibrated TEST metrics are
+        # in-sample for the calibrator — judge calibration on Q3 in evaluate.py.
+        method = model_cfg.get("calibration", {}).get("method", "sigmoid")
+        artifact = fit_and_attach_calibrator(model_name, test_df, target, data_cfg["output"]["models_dir"], method)
+        cal_metrics = compute_metrics(test_df[target], predict_proba(artifact, test_df), threshold, w_test)
+        logger.info("%s XGBoost (test, calibrated — fitted on this set) metrics: %s", model_name, cal_metrics)
+
         mlflow.log_params({"model": model_name, "type": "xgboost", "n_features": len(features),
-                           **model_cfg["xgboost"]})
+                           "calibration": method, **model_cfg["xgboost"]})
         mlflow.log_metrics({k: v for k, v in metrics.items() if isinstance(v, (int, float))})
         mlflow.log_artifact(f"configs/{model_name}_feature_list.json")
         mlflow.xgboost.log_model(model, name="model")

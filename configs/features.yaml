@@ -12,6 +12,7 @@ metadata_columns:
   - TRUE_CLOSE_QUARTER_NUM
   - IS_AUTO_CLOSED          # stratification + reporting only
   - DAYS_IN_SUSPECT_TOTAL   # only used to generate Suspect snapshots
+  - HAS_STAGE_HISTORY       # always 1 while no-history deals are excluded; never a feature
   - SNAPSHOT_AGE_DAYS
   - SAMPLE_WEIGHT
   - OUTCOME_TYPE
@@ -35,7 +36,6 @@ static_features:
   - RECORDTYPE_NAME
   - BILLINGSTATE
   - IS_REMOTE_GEO
-  - PRIOR_ACCOUNT_WIN_COUNT
   - PCT_CONTACTS_CAN_CONTACT
   - ACTIVE_CONTACT_COUNT
   - JOBCAT_EXECUTIVE_COUNT
@@ -51,6 +51,11 @@ suspect:
   # Opps that have never left Suspect (MAX_STAGE_REACHED == 1) at scoring time.
   extra_features:
     - DAYS_IN_SUSPECT
+  # Static features to leave OUT of this model only.
+  # BILLINGSTATE: overfit test (acts as a proxy for campaigns/initiatives, e.g.
+  # MT 324 rows at 0% wins; 15 states pushed opposite to their real win rate).
+  exclude_features:
+    - BILLINGSTATE
   # Training snapshots: every historical closed deal contributes a row at
   # age 0, 30, 60, ... days for as long as it was still sitting in Suspect.
   snapshot_interval_days: 30
@@ -64,6 +69,7 @@ prospect_plus:
     - MAX_STAGE_REACHED
     - BACKWARD_MOVE_COUNT
     - CYCLE_LENGTH_DAYS
+  exclude_features:  [BILLINGSTATE] # once tested for this model too
   include_activity_features: true   # per-stage activity counts + derived ratios
 
 split:

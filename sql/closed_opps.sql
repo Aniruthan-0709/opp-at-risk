@@ -25,6 +25,13 @@
 --   - IS_REMOTE_GEO from current owner. Rare Remote Geo -> Dead Queue moves
 --     slightly understate Remote Geo losses (documented, accepted).
 --   - Closed Lost under 'LG: PS Lagging States' still excluded (open item).
+--   - Deals with NO tracked Suspect-Contracting row (only a Closed row) are
+--     EXCLUDED: mostly administrative closures (26% closed same day, 59% Dead
+--     Queue, 2% win rate, median 11 days open). HAS_STAGE_HISTORY is kept in
+--     the output (always 1 while excluded) so they can be revisited in v2.
+--   - OPTYS_DIM_RECORD_DETAILS has repeated rows per opp; deduped in the
+--     record_details CTE (one row per opp) so deals are never duplicated
+--     and activity counts are never double-counted.
 -- =============================================================================
 
 WITH true_close AS (
@@ -42,6 +49,15 @@ opp_true_start AS (
         ID AS OPPORTUNITY_ID,
         TRUE_CYCLE_START
     FROM DATALAB_SANDBOX.GS_REPORTING.OPTYS_STAGE_DURATION_WEIGHTED
+),
+
+-- One row per opp: the source table repeats IDs (11,825 found). ORDER BY is a
+-- deterministic tie-breaker; switch to a date/current-flag column if the rows
+-- ever carry different record types for the same opp.
+record_details AS (
+    SELECT ID, RECORDTYPE_NAME
+    FROM DATALAB_SANDBOX.GS_SILVER.OPTYS_DIM_RECORD_DETAILS
+    QUALIFY ROW_NUMBER() OVER (PARTITION BY ID ORDER BY RECORDTYPE_NAME) = 1
 ),
 
 -- Chronologically LAST real-funnel stage visited before closing (by
@@ -105,7 +121,7 @@ label_base AS (
     JOIN opp_true_start ts      ON ts.OPPORTUNITY_ID = g.ID
     LEFT JOIN last_pre_close_stage lpcs ON lpcs.OPPORTUNITY_ID = g.ID
     LEFT JOIN suspect_exit se   ON se.OPPORTUNITY_ID = g.ID
-    LEFT JOIN DATALAB_SANDBOX.GS_SILVER.OPTYS_DIM_RECORD_DETAILS rd ON rd.ID = g.ID
+    LEFT JOIN record_details rd ON rd.ID = g.ID
     LEFT JOIN EDH.SFDC.ACCOUNT_V a ON a.ID = g.ACCOUNTID
     WHERE tc.TRUE_CLOSE_DATE <= CURRENT_DATE()
 ),
@@ -131,10 +147,13 @@ backward_moves AS (
 base AS (
     SELECT
         lb.*,
-        ms.MAX_STAGE_REACHED,
+        -- COALESCE/flag kept so re-including no-history deals later is a one-word change
+        -- (JOIN -> LEFT JOIN below). With the inner JOIN, HAS_STAGE_HISTORY is always 1.
+        COALESCE(ms.MAX_STAGE_REACHED, 1) AS MAX_STAGE_REACHED,
+        IFF(ms.OPPORTUNITY_ID IS NULL, 0, 1) AS HAS_STAGE_HISTORY,
         COALESCE(bm.BACKWARD_MOVE_COUNT, 0) AS BACKWARD_MOVE_COUNT
     FROM label_base lb
-    JOIN opp_max_stage_raw ms ON ms.OPPORTUNITY_ID = lb.OPPORTUNITY_ID  -- single-row-closed exclusion
+    JOIN opp_max_stage_raw ms ON ms.OPPORTUNITY_ID = lb.OPPORTUNITY_ID  -- excludes no-history deals
     LEFT JOIN backward_moves bm ON bm.OPPORTUNITY_ID = lb.OPPORTUNITY_ID
     WHERE lb.LABEL_WON IS NOT NULL
       AND NOT (lb.LABEL_WON = 0 AND lb.INITIATIVE__C = 'LG: PS Lagging States')
@@ -258,8 +277,8 @@ event_features AS (
 ),
 
 -- ---------------------------------------------------------------------------
--- CONTACTS (current snapshot per account, active contacts only)
--- If ACTIVE__C is stored as text in EDH, change to ACTIVE__C = 'true'.
+-- CONTACTS (current snapshot per account, active contacts only: STATUS = 'Active')
+-- Keep identical to open_opps.sql.
 -- ---------------------------------------------------------------------------
 contact_features AS (
     SELECT
@@ -281,7 +300,7 @@ contact_features AS (
             ), 1, 0)) AS JOBCAT_UNKNOWN_COUNT,
         MODE(LEADSOURCE) AS DOMINANT_LEADSOURCE
     FROM EDH.SFDC.CONTACT_V
-    WHERE ACTIVE__C = TRUE
+    WHERE STATUS = 'Active'
     GROUP BY ACCOUNTID
 )
 
@@ -292,7 +311,7 @@ SELECT
     -- metadata (never model inputs)
     b.OPPORTUNITY_ID, b.ACCOUNTID, b.INITIATIVE__C,
     b.TRUE_CYCLE_START, b.TRUE_CLOSE_DATE, b.TRUE_CLOSE_FY, b.TRUE_CLOSE_QUARTER_NUM,
-    b.IS_AUTO_CLOSED, b.DAYS_IN_SUSPECT_TOTAL,
+    b.IS_AUTO_CLOSED, b.DAYS_IN_SUSPECT_TOTAL, b.HAS_STAGE_HISTORY,
     b.LABEL_WON,
     -- static features (both models)
     b.VERTICAL, b.SECTOR, b.HEADCOUNT, b.RECORDTYPE_NAME, b.BILLINGSTATE, b.IS_REMOTE_GEO,

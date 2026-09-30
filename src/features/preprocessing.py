@@ -41,6 +41,38 @@ ZERO_FILL_COLUMNS = [
 #   PCT_CONTACTS_CAN_CONTACT - no contacts at all is not "0% reachable"
 #   share ratios            - no activity is not "0% calls"
 
+# US states (50 + DC). BILLINGSTATE in Salesforce mixes two-letter codes, full
+# names, non-US locations, and junk; clean() maps every value to a two-letter
+# code, 'OTHER', or missing. Lives here (not in prepare_data.py) so training
+# and scoring clean states identically.
+US_STATES = {
+    "ALABAMA": "AL", "ALASKA": "AK", "ARIZONA": "AZ", "ARKANSAS": "AR", "CALIFORNIA": "CA", "COLORADO": "CO",
+    "CONNECTICUT": "CT", "DELAWARE": "DE", "DISTRICT OF COLUMBIA": "DC", "FLORIDA": "FL", "GEORGIA": "GA",
+    "HAWAII": "HI", "IDAHO": "ID", "ILLINOIS": "IL", "INDIANA": "IN", "IOWA": "IA", "KANSAS": "KS",
+    "KENTUCKY": "KY", "LOUISIANA": "LA", "MAINE": "ME", "MARYLAND": "MD", "MASSACHUSETTS": "MA",
+    "MICHIGAN": "MI", "MINNESOTA": "MN", "MISSISSIPPI": "MS", "MISSOURI": "MO", "MONTANA": "MT",
+    "NEBRASKA": "NE", "NEVADA": "NV", "NEW HAMPSHIRE": "NH", "NEW JERSEY": "NJ", "NEW MEXICO": "NM",
+    "NEW YORK": "NY", "NORTH CAROLINA": "NC", "NORTH DAKOTA": "ND", "OHIO": "OH", "OKLAHOMA": "OK",
+    "OREGON": "OR", "PENNSYLVANIA": "PA", "RHODE ISLAND": "RI", "SOUTH CAROLINA": "SC", "SOUTH DAKOTA": "SD",
+    "TENNESSEE": "TN", "TEXAS": "TX", "UTAH": "UT", "VERMONT": "VT", "VIRGINIA": "VA", "WASHINGTON": "WA",
+    "WEST VIRGINIA": "WV", "WISCONSIN": "WI", "WYOMING": "WY",
+}
+US_STATE_CODES = set(US_STATES.values())
+BLANK_STATE_VALUES = {"", "-", "N/A", "NA", "NULL", "NONE"}
+
+
+def clean_billing_state(values: pd.Series) -> pd.Series:
+    """
+    Two-letter US code kept; full US state name -> code (CALIFORNIA -> CA);
+    blank / '-' / 'N/A' -> missing (later labelled 'Unknown');
+    anything else (non-US, Canadian provinces, junk) -> 'OTHER'.
+    """
+    raw = values.astype("string").str.strip().str.upper()
+    cleaned = raw.where(raw.isin(US_STATE_CODES), raw.map(US_STATES))
+    cleaned = cleaned.where(cleaned.notna() | raw.isna() | raw.isin(BLANK_STATE_VALUES), "OTHER")
+    return cleaned.astype(object).where(cleaned.notna(), np.nan)
+
+
 CLOSED_REQUIRED = [
     "OPPORTUNITY_ID", "ACCOUNTID", "INITIATIVE__C", "TRUE_CYCLE_START", "TRUE_CLOSE_DATE",
     "TRUE_CLOSE_FY", "TRUE_CLOSE_QUARTER_NUM", "IS_AUTO_CLOSED", "DAYS_IN_SUSPECT_TOTAL", "LABEL_WON",
@@ -56,15 +88,21 @@ OPEN_REQUIRED = [
 # ---------------------------------------------------------------------------
 # Feature lists
 # ---------------------------------------------------------------------------
+def _without_excluded(cols: list[str], model_cfg: dict) -> list[str]:
+    excluded = set(model_cfg.get("exclude_features") or [])
+    return [c for c in cols if c not in excluded]
+
+
 def suspect_features(features_cfg: dict) -> list[str]:
-    return list(features_cfg["static_features"]) + list(features_cfg["suspect"]["extra_features"])
+    cols = list(features_cfg["static_features"]) + list(features_cfg["suspect"]["extra_features"])
+    return _without_excluded(cols, features_cfg["suspect"])
 
 
 def prospect_plus_features(features_cfg: dict) -> list[str]:
     cols = list(features_cfg["static_features"]) + list(features_cfg["prospect_plus"]["extra_features"])
     if features_cfg["prospect_plus"].get("include_activity_features", True):
         cols += ACTIVITY_COLUMNS + DERIVED_ACTIVITY_COLUMNS
-    return cols
+    return _without_excluded(cols, features_cfg["prospect_plus"])
 
 
 def configured_features(model_name: str, features_cfg: dict) -> list[str]:
@@ -94,6 +132,8 @@ def clean(df: pd.DataFrame, features_cfg: dict) -> pd.DataFrame:
     for col in ZERO_FILL_COLUMNS:
         if col in df.columns:
             df[col] = pd.to_numeric(df[col], errors="coerce").fillna(0)
+    if "BILLINGSTATE" in df.columns:
+        df["BILLINGSTATE"] = clean_billing_state(df["BILLINGSTATE"])
     for col in features_cfg["categorical_columns"]:
         if col in df.columns:
             df[col] = df[col].fillna("Unknown").astype(str).str.strip()
