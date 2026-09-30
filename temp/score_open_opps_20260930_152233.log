@@ -1,9 +1,0 @@
-2026-09-30 15:22:33,778 | INFO | root | Logging initialized for 'score_open_opps'. Writing to logs\score_open_opps_20260930_152233.log
-2026-09-30 15:22:33,979 | INFO | src.features.preprocessing | Prepared 22507 open opps
-2026-09-30 15:22:33,987 | INFO | root | Owner gate: 712 of 22507 open opps need reassignment (not scored) -> reports\owner_reassignment_alerts.csv
-2026-09-30 15:22:34,066 | INFO | src.models.train | Loaded suspect model from models\suspect_model.joblib (trained 2026-09-30T12:58:47, 17 features)
-2026-09-30 15:22:34,716 | INFO | root | suspect: scored 11349 opps (mean win probability 0.056)
-2026-09-30 15:22:34,733 | INFO | src.models.train | Loaded prospect_plus model from models\prospect_plus_model.joblib (trained 2026-09-30T12:59:00, 64 features)
-2026-09-30 15:22:35,011 | INFO | root | prospect_plus: scored 10446 opps (mean win probability 0.056)
-2026-09-30 15:22:35,128 | INFO | root | Saved 21795 scores to reports\open_opp_scores.csv | Prospect Desk (untriaged): 2104 | Dead Queue: 135
-2026-09-30 15:22:35,183 | INFO | root | Appended 21795 rows to reports\prediction_log.csv
