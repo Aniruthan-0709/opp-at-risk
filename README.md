@@ -47,14 +47,15 @@ Re-run `train_baseline.py` whenever input data, features, or config change.
 Each quarter: roll the windows in `configs/data.yaml` forward and retrain.
 
 ## Outputs (`reports/`)
-- `evaluation_summary.json`, `<model>_calibration.csv`
+- `evaluation_summary.json`, `<model>_calibration_raw.csv`, `<model>_calibration_calibrated.csv`
+- `<model>_mutual_info_ranking.csv` (diagnostic)
 - `<model>_shap_ranking.csv`, `<model>_shap_summary.png`, `<model>_insights.csv`
 - `open_opp_scores.csv`, `owner_reassignment_alerts.csv`, `top_opps_priority_list.csv`, `prediction_log.csv`
 - `segment_risk_summary.csv`
 - `<direction>_reasons_<population>_<model>.csv`, `<direction>_reason_bins_...csv`, `<direction>_reasons_per_opp_<model>.csv`
 
 ## Verify before the first run
-- `ACTIVE__C` is boolean in EDH (if text, change the filter to `ACTIVE__C = 'true'` in both SQL files)
+- Contacts are filtered on `CONTACT_V.STATUS = 'Active'` in both SQL files (confirm this matches EDH)
 - The Prospect Desk owner name matches `ILIKE '%PROSPECT DESK%'` in `open_opps.sql`
 - `OPTYS_GOLD.OWNERID` exists (used to join `EDH.SFDC.USER_V` for the owner gate)
 - The shared CTEs in the two SQL files stay identical (change one, change both)

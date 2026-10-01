@@ -1,0 +1,16 @@
+2026-10-01 10:26:45,712 | INFO | root | Logging initialized for 'prepare_data'. Writing to logs\prepare_data_20261001_102645.log
+2026-10-01 10:26:45,875 | INFO | root | Loaded data/input/closed_opps.csv: 6566 rows
+2026-10-01 10:26:45,976 | INFO | src.features.preprocessing | Prepared 6566 closed opps (win rate 7.8%)
+2026-10-01 10:26:45,986 | INFO | root | Train/test pool (closed <= 2026-07-31): 4985 opps | Eval window (2026-08-01..2026-10-31): 1581 opps
+2026-10-01 10:26:45,996 | INFO | src.labeling.split | Merged 4 rows from small quarter strata into outcome-only strata
+2026-10-01 10:26:46,558 | INFO | src.labeling.split | Split: 3988 train opps / 997 test opps
+2026-10-01 10:26:46,560 | INFO | src.labeling.split |   train outcome mix %: {'Lost': 75.3, 'AutoClosed': 16.5, 'Won': 8.2}
+2026-10-01 10:26:46,561 | INFO | src.labeling.split |   test  outcome mix %: {'Lost': 75.3, 'AutoClosed': 16.5, 'Won': 8.1}
+2026-10-01 10:26:46,567 | INFO | root | ======================================================================
+2026-10-01 10:26:46,567 | INFO | root | Writing processed datasets to data\processed
+2026-10-01 10:26:46,870 | INFO | root |   suspect_train            7067 rows from  3988 opps | win rate 8.2%
+2026-10-01 10:26:46,871 | INFO | root |   prospect_plus_train      2693 rows              | win rate 12.0%
+2026-10-01 10:26:46,958 | INFO | root |   suspect_test             1814 rows from   997 opps | win rate 8.1%
+2026-10-01 10:26:46,959 | INFO | root |   prospect_plus_test        655 rows              | win rate 12.1%
+2026-10-01 10:26:47,075 | INFO | root |   suspect_eval             2451 rows from  1581 opps | win rate 6.7%
+2026-10-01 10:26:47,076 | INFO | root |   prospect_plus_eval        600 rows              | win rate 14.5%

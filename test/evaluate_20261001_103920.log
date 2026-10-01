@@ -1,0 +1,69 @@
+2026-10-01 10:39:20,287 | INFO | root | Logging initialized for 'evaluate'. Writing to logs\evaluate_20261001_103920.log
+2026-10-01 10:39:20,325 | INFO | src.models.train | Loaded suspect model from models\suspect_model.joblib (trained 2026-10-01T10:37:26, 17 features)
+2026-10-01 10:39:20,440 | INFO | root | suspect        test  raw        {'n': 1814, 'win_rate': 0.0812, 'precision': 0.4129, 'recall': 0.7531, 'roc_auc': 0.9096, 'auc_pr': 0.6263}
+2026-10-01 10:39:20,440 | INFO | root | suspect        test  calibrated {'n': 1814, 'win_rate': 0.0812, 'precision': 0.7083, 'recall': 0.4198, 'roc_auc': 0.9096, 'auc_pr': 0.6263} (calibrator was fitted on this set)
+2026-10-01 10:39:20,521 | INFO | root | suspect        eval  raw        {'n': 2451, 'win_rate': 0.067, 'precision': 0.2891, 'recall': 0.6415, 'roc_auc': 0.8611, 'auc_pr': 0.3564}
+2026-10-01 10:39:20,521 | INFO | root | suspect        eval  calibrated {'n': 2451, 'win_rate': 0.067, 'precision': 0.4027, 'recall': 0.2099, 'roc_auc': 0.8611, 'auc_pr': 0.3564}
+2026-10-01 10:39:20,538 | INFO | root | suspect RAW calibration on eval (predicted vs actual):
+          bin    n  mean_predicted  actual_win_rate
+(-0.001, 0.1] 1253          0.0375           0.0081
+   (0.1, 0.2]  288          0.1454           0.0330
+   (0.2, 0.3]  269          0.2474           0.0522
+   (0.3, 0.4]  147          0.3525           0.0453
+   (0.4, 0.5]  121          0.4483           0.1131
+   (0.5, 0.6]   84          0.5400           0.1948
+   (0.6, 0.7]   77          0.6542           0.1639
+   (0.7, 0.8]   77          0.7459           0.2752
+   (0.8, 0.9]   93          0.8491           0.4876
+   (0.9, 1.0]   42          0.9410           0.3600
+2026-10-01 10:39:20,551 | INFO | root | suspect CALIBRATED calibration on eval (predicted vs actual):
+          bin    n  mean_predicted  actual_win_rate
+(-0.001, 0.1] 1957          0.0234           0.0223
+   (0.1, 0.2]  205          0.1370           0.1431
+   (0.2, 0.3]   92          0.2501           0.2101
+   (0.3, 0.4]   62          0.3452           0.2211
+   (0.4, 0.5]   65          0.4596           0.5029
+   (0.5, 0.6]   26          0.5423           0.4142
+   (0.6, 0.7]   16          0.6347           0.3333
+   (0.7, 0.8]   14          0.7424           0.2500
+   (0.8, 0.9]   13          0.8369           0.5806
+   (0.9, 1.0]    1          0.9172           1.0000
+2026-10-01 10:39:20,556 | INFO | src.models.train | Loaded prospect_plus model from models\prospect_plus_model.joblib (trained 2026-10-01T10:37:39, 64 features)
+2026-10-01 10:39:20,605 | INFO | root | prospect_plus  test  raw        {'n': 655, 'win_rate': 0.1206, 'precision': 0.7912, 'recall': 0.9114, 'roc_auc': 0.9856, 'auc_pr': 0.9507}
+2026-10-01 10:39:20,606 | INFO | root | prospect_plus  test  calibrated {'n': 655, 'win_rate': 0.1206, 'precision': 0.8675, 'recall': 0.9114, 'roc_auc': 0.9856, 'auc_pr': 0.9507} (calibrator was fitted on this set)
+2026-10-01 10:39:20,664 | INFO | root | prospect_plus  eval  raw        {'n': 600, 'win_rate': 0.145, 'precision': 0.7864, 'recall': 0.931, 'roc_auc': 0.9842, 'auc_pr': 0.9181}
+2026-10-01 10:39:20,664 | INFO | root | prospect_plus  eval  calibrated {'n': 600, 'win_rate': 0.145, 'precision': 0.8795, 'recall': 0.8391, 'roc_auc': 0.9842, 'auc_pr': 0.9181}
+2026-10-01 10:39:20,677 | INFO | root | prospect_plus RAW calibration on eval (predicted vs actual):
+          bin   n  mean_predicted  actual_win_rate
+(-0.001, 0.1] 457          0.0093           0.0044
+   (0.1, 0.2]  19          0.1452           0.0526
+   (0.2, 0.3]  12          0.2477           0.1667
+   (0.3, 0.4]   5          0.3359           0.0000
+   (0.4, 0.5]   4          0.4502           0.2500
+   (0.5, 0.6]  11          0.5377           0.4545
+   (0.6, 0.7]   7          0.6615           0.1429
+   (0.7, 0.8]   8          0.7526           0.7500
+   (0.8, 0.9]  20          0.8426           0.8500
+   (0.9, 1.0]  57          0.9695           0.9123
+2026-10-01 10:39:20,689 | INFO | root | prospect_plus CALIBRATED calibration on eval (predicted vs actual):
+          bin   n  mean_predicted  actual_win_rate
+(-0.001, 0.1] 479          0.0071           0.0063
+   (0.1, 0.2]  14          0.1322           0.1429
+   (0.2, 0.3]  12          0.2601           0.3333
+   (0.3, 0.4]   7          0.3632           0.2857
+   (0.4, 0.5]   5          0.4340           0.6000
+   (0.5, 0.6]  10          0.5464           0.8000
+   (0.6, 0.7]  14          0.6397           0.8571
+   (0.7, 0.8]  10          0.7626           0.7000
+   (0.8, 0.9]  14          0.8602           0.9286
+   (0.9, 1.0]  35          0.9594           0.9429
+2026-10-01 10:39:20,712 | INFO | root | ======================================================================
+2026-10-01 10:39:20,712 | INFO | root | COMBINED routed system (eval window, calibrated): {'n': 1581, 'win_rate': 0.067, 'precision': 0.7872, 'recall': 0.6981, 'roc_auc': 0.9654, 'auc_pr': 0.8131}
+2026-10-01 10:39:20,713 | INFO | root |   routed to prospect_plus: 600 deals | suspect: 981 deals
+2026-10-01 10:39:20,716 | INFO | root | Average predicted win probability by actual outcome:
+              count    mean
+OUTCOME_TYPE               
+AutoClosed      317  0.0316
+Lost           1158  0.0458
+Won             106  0.6537
+2026-10-01 10:39:20,717 | INFO | root | Saved reports\evaluation_summary.json

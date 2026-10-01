@@ -1,0 +1,18 @@
+2026-10-01 10:37:10,391 | INFO | root | Logging initialized for 'train_baseline'. Writing to logs\train_baseline_20261001_103710.log
+2026-10-01 10:37:12,221 | INFO | root | ======================================================================
+2026-10-01 10:37:12,221 | INFO | root | SUSPECT: 7067 train rows / 1814 test rows, 17 features
+2026-10-01 10:37:13,430 | INFO | src.models.train | suspect logistic (test) metrics: {'n': 1814, 'win_rate': 0.0812, 'precision': 0.21, 'recall': 0.8097, 'roc_auc': 0.8468, 'auc_pr': 0.3828}
+2026-10-01 10:37:26,689 | INFO | src.models.train | XGBoost scale_pos_weight = 11.23 (weighted neg=3662, pos=326)
+2026-10-01 10:37:26,977 | INFO | src.models.train | Saved suspect model (17 features) to models\suspect_model.joblib
+2026-10-01 10:37:27,004 | INFO | src.models.train | suspect XGBoost (test, raw) metrics: {'n': 1814, 'win_rate': 0.0812, 'precision': 0.4129, 'recall': 0.7531, 'roc_auc': 0.9096, 'auc_pr': 0.6263}
+2026-10-01 10:37:27,046 | INFO | src.models.train | suspect: fitted sigmoid calibration on 1814 test rows and saved it with the model
+2026-10-01 10:37:27,076 | INFO | root | suspect XGBoost (test, calibrated — fitted on this set) metrics: {'n': 1814, 'win_rate': 0.0812, 'precision': 0.7083, 'recall': 0.4198, 'roc_auc': 0.9096, 'auc_pr': 0.6263}
+2026-10-01 10:37:32,491 | INFO | root | ======================================================================
+2026-10-01 10:37:32,491 | INFO | root | PROSPECT_PLUS: 2693 train rows / 655 test rows, 64 features
+2026-10-01 10:37:32,599 | INFO | src.models.train | prospect_plus logistic (test) metrics: {'n': 655, 'win_rate': 0.1206, 'precision': 0.7327, 'recall': 0.9367, 'roc_auc': 0.9803, 'auc_pr': 0.8898}
+2026-10-01 10:37:38,611 | INFO | src.models.train | XGBoost scale_pos_weight = 7.31 (weighted neg=2369, pos=324)
+2026-10-01 10:37:39,103 | INFO | src.models.train | Saved prospect_plus model (64 features) to models\prospect_plus_model.joblib
+2026-10-01 10:37:39,185 | INFO | src.models.train | prospect_plus XGBoost (test, raw) metrics: {'n': 655, 'win_rate': 0.1206, 'precision': 0.7912, 'recall': 0.9114, 'roc_auc': 0.9856, 'auc_pr': 0.9507}
+2026-10-01 10:37:39,249 | INFO | src.models.train | prospect_plus: fitted sigmoid calibration on 655 test rows and saved it with the model
+2026-10-01 10:37:39,297 | INFO | root | prospect_plus XGBoost (test, calibrated — fitted on this set) metrics: {'n': 655, 'win_rate': 0.1206, 'precision': 0.8675, 'recall': 0.9114, 'roc_auc': 0.9856, 'auc_pr': 0.9507}
+2026-10-01 10:37:45,255 | INFO | root | Done. Compare runs with: mlflow ui --host 127.0.0.1 --backend-store-uri sqlite:///mlflow.db

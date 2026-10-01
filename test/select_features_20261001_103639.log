@@ -1,0 +1,3 @@
+2026-10-01 10:36:39,018 | INFO | root | Logging initialized for 'select_features'. Writing to logs\select_features_20261001_103639.log
+2026-10-01 10:36:39,076 | INFO | root | suspect: 17 configured -> 17 selected (dropped zero-variance: none) -> configs\suspect_feature_list.json
+2026-10-01 10:36:39,100 | INFO | root | prospect_plus: 64 configured -> 64 selected (dropped zero-variance: none) -> configs\prospect_plus_feature_list.json

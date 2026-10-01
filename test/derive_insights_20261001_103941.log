@@ -1,0 +1,532 @@
+2026-10-01 10:39:41,499 | INFO | root | Logging initialized for 'derive_insights'. Writing to logs\derive_insights_20261001_103941.log
+2026-10-01 10:39:41,538 | INFO | src.models.train | Loaded suspect model from models\suspect_model.joblib (trained 2026-10-01T10:37:26, 17 features)
+2026-10-01 10:39:42,813 | INFO | root | ======================================================================
+2026-10-01 10:39:42,813 | INFO | root | SUSPECT — baseline win rate 8.2% (compare every bin against this)
+2026-10-01 10:39:42,835 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:42,835 | INFO | root | DEPENDENCE: ACTIVE_CONTACT_COUNT
+2026-10-01 10:39:42,836 | INFO | root |   0                            n=1741   win_rate=  0.1%  mean_shap=-2.3916
+2026-10-01 10:39:42,836 | INFO | root |   1-2                          n=1129   win_rate=  2.9%  mean_shap=-1.7189
+2026-10-01 10:39:42,837 | INFO | root |   3-5                          n=988    win_rate=  8.4%  mean_shap=-0.2456  <- win rate and SHAP disagree
+2026-10-01 10:39:42,837 | INFO | root |   6+                           n=3209   win_rate= 14.3%  mean_shap=+0.3151
+2026-10-01 10:39:42,845 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:42,846 | INFO | root | DEPENDENCE: DOMINANT_LEADSOURCE
+2026-10-01 10:39:42,846 | INFO | root |   Avention                     n=3      win_rate=  0.0%  mean_shap=+0.0364  <- LOW CONFIDENCE
+2026-10-01 10:39:42,847 | INFO | root |   BU_SITES                     n=1421   win_rate= 12.0%  mean_shap=+0.1708
+2026-10-01 10:39:42,847 | INFO | root |   Call Day                     n=2      win_rate=  0.0%  mean_shap=-0.9153  <- LOW CONFIDENCE
+2026-10-01 10:39:42,847 | INFO | root |   Cold Call                    n=1      win_rate=  0.0%  mean_shap=+0.3359  <- LOW CONFIDENCE
+2026-10-01 10:39:42,848 | INFO | root |   Customer Service Inquiry     n=1      win_rate=  0.0%  mean_shap=+0.3495  <- LOW CONFIDENCE
+2026-10-01 10:39:42,848 | INFO | root |   D&B                          n=5      win_rate=  0.0%  mean_shap=-0.9244  <- LOW CONFIDENCE
+2026-10-01 10:39:42,848 | INFO | root |   Data Axle                    n=138    win_rate=  9.8%  mean_shap=+0.7191
+2026-10-01 10:39:42,849 | INFO | root |   DataAxle                     n=17     win_rate=  0.0%  mean_shap=-1.1957
+2026-10-01 10:39:42,849 | INFO | root |   Definitive                   n=194    win_rate= 12.5%  mean_shap=-0.9029  <- win rate and SHAP disagree
+2026-10-01 10:39:42,849 | INFO | root |   EVERSTRING                   n=1      win_rate=  0.0%  mean_shap=-0.0637  <- LOW CONFIDENCE
+2026-10-01 10:39:42,849 | INFO | root |   Found on Own                 n=4      win_rate=  0.0%  mean_shap=-0.6624  <- LOW CONFIDENCE
+2026-10-01 10:39:42,850 | INFO | root |   Google                       n=8      win_rate=  0.0%  mean_shap=-0.2793  <- LOW CONFIDENCE
+2026-10-01 10:39:42,850 | INFO | root |   Handle Pull                  n=2      win_rate=  0.0%  mean_shap=-0.4948  <- LOW CONFIDENCE
+2026-10-01 10:39:42,850 | INFO | root |   LG: PS Charter Schools       n=1      win_rate=100.0%  mean_shap=+3.0446  <- LOW CONFIDENCE
+2026-10-01 10:39:42,851 | INFO | root |   Lead Generation              n=15     win_rate= 27.3%  mean_shap=+0.1662
+2026-10-01 10:39:42,851 | INFO | root |   LinkedIn Sales Navigator     n=2      win_rate=  0.0%  mean_shap=-0.2540  <- LOW CONFIDENCE
+2026-10-01 10:39:42,851 | INFO | root |   MDR                          n=366    win_rate= 16.8%  mean_shap=-0.5799  <- win rate and SHAP disagree
+2026-10-01 10:39:42,851 | INFO | root |   Marketing Generated          n=4      win_rate=  0.0%  mean_shap=-0.0348  <- LOW CONFIDENCE
+2026-10-01 10:39:42,852 | INFO | root |   Member List                  n=1      win_rate=  0.0%  mean_shap=-0.1026  <- LOW CONFIDENCE
+2026-10-01 10:39:42,852 | INFO | root |   NSA HD Blitz                 n=1      win_rate=  0.0%  mean_shap=+0.1597  <- LOW CONFIDENCE
+2026-10-01 10:39:42,852 | INFO | root |   Other                        n=1152   win_rate= 11.7%  mean_shap=+0.2729
+2026-10-01 10:39:42,853 | INFO | root |   Prospect Desk                n=42     win_rate=  5.9%  mean_shap=-1.1114
+2026-10-01 10:39:42,853 | INFO | root |   Referral                     n=1      win_rate=  0.0%  mean_shap=-0.3570  <- LOW CONFIDENCE
+2026-10-01 10:39:42,853 | INFO | root |   SA.com                       n=426    win_rate= 12.0%  mean_shap=+0.3072
+2026-10-01 10:39:42,853 | INFO | root |   SASI                         n=2      win_rate=  0.0%  mean_shap=-0.6730  <- LOW CONFIDENCE
+2026-10-01 10:39:42,854 | INFO | root |   StaplesAdvantage.com         n=13     win_rate=  0.0%  mean_shap=-1.4079  <- LOW CONFIDENCE
+2026-10-01 10:39:42,854 | INFO | root |   Tradeshows                   n=2      win_rate=  0.0%  mean_shap=-0.5324  <- LOW CONFIDENCE
+2026-10-01 10:39:42,854 | INFO | root |   Unknown                      n=1741   win_rate=  0.1%  mean_shap=-0.7685
+2026-10-01 10:39:42,854 | INFO | root |   ZoomInfo                     n=1501   win_rate=  7.0%  mean_shap=-0.4984
+2026-10-01 10:39:42,876 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:42,876 | INFO | root | DEPENDENCE: HEADCOUNT
+2026-10-01 10:39:42,876 | INFO | root |   (-0.001, 12.0]               n=1830   win_rate=  2.8%  mean_shap=+0.0080  <- win rate and SHAP disagree
+2026-10-01 10:39:42,877 | INFO | root |   (12.0, 35.0]                 n=1709   win_rate=  9.0%  mean_shap=+0.2682
+2026-10-01 10:39:42,877 | INFO | root |   (200.0, 355519.0]            n=1709   win_rate=  8.1%  mean_shap=-0.9134
+2026-10-01 10:39:42,877 | INFO | root |   (35.0, 200.0]                n=1819   win_rate= 12.9%  mean_shap=+0.1452
+2026-10-01 10:39:42,886 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:42,886 | INFO | root | DEPENDENCE: SECTOR
+2026-10-01 10:39:42,887 | INFO | root |   Healthcare - Hospitals       n=57     win_rate=  8.6%  mean_shap=-0.7038  <- win rate and SHAP disagree
+2026-10-01 10:39:42,887 | INFO | root |   Healthcare - Non Acute       n=849    win_rate= 16.9%  mean_shap=+0.5326
+2026-10-01 10:39:42,887 | INFO | root |   Healthcare - Others          n=42     win_rate= 20.0%  mean_shap=+0.2094
+2026-10-01 10:39:42,887 | INFO | root |   Public Sector - Higher Education n=204    win_rate= 10.8%  mean_shap=-0.4819  <- win rate and SHAP disagree
+2026-10-01 10:39:42,888 | INFO | root |   Public Sector - K-12         n=798    win_rate= 12.4%  mean_shap=-0.6443  <- win rate and SHAP disagree
+2026-10-01 10:39:42,888 | INFO | root |   Public Sector - Local Gov    n=924    win_rate= 14.3%  mean_shap=+0.4602
+2026-10-01 10:39:42,888 | INFO | root |   Public Sector - Others       n=1147   win_rate=  2.9%  mean_shap=-0.0166
+2026-10-01 10:39:42,888 | INFO | root |   Unclassified - Review        n=3046   win_rate=  3.2%  mean_shap=-0.4589
+2026-10-01 10:39:42,909 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:42,909 | INFO | root | DEPENDENCE: JOBCAT_OPERATIONS_COUNT
+2026-10-01 10:39:42,910 | INFO | root |   (-0.001, 1.0]                n=3584   win_rate=  2.5%  mean_shap=-0.4923
+2026-10-01 10:39:42,910 | INFO | root |   (1.0, 6.0]                   n=1852   win_rate=  9.8%  mean_shap=-0.0988  <- win rate and SHAP disagree
+2026-10-01 10:39:42,910 | INFO | root |   (6.0, 546.0]                 n=1631   win_rate= 18.3%  mean_shap=+0.3695
+2026-10-01 10:39:42,927 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:42,927 | INFO | root | DEPENDENCE: JOBCAT_FINANCE_PROCUREMENT_COUNT
+2026-10-01 10:39:42,927 | INFO | root |   (0.999, 2.0]                 n=1502   win_rate= 12.7%  mean_shap=+0.2288
+2026-10-01 10:39:42,928 | INFO | root |   (2.0, 4.0]                   n=594    win_rate= 16.0%  mean_shap=+0.3250
+2026-10-01 10:39:42,928 | INFO | root |   (4.0, 2864.0]                n=973    win_rate= 14.7%  mean_shap=+0.3068
+2026-10-01 10:39:42,928 | INFO | root |   0                            n=3998   win_rate=  3.9%  mean_shap=-0.3859
+2026-10-01 10:39:42,939 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:42,940 | INFO | root | DEPENDENCE: VERTICAL
+2026-10-01 10:39:42,941 | INFO | root |   CM                           n=856    win_rate=  3.3%  mean_shap=-0.1737
+2026-10-01 10:39:42,941 | INFO | root |   FS                           n=2038   win_rate=  3.3%  mean_shap=-0.7345
+2026-10-01 10:39:42,941 | INFO | root |   HC                           n=948    win_rate= 16.5%  mean_shap=+0.1633
+2026-10-01 10:39:42,942 | INFO | root |   PRINT                        n=152    win_rate=  0.0%  mean_shap=-0.9141
+2026-10-01 10:39:42,942 | INFO | root |   PS                           n=3073   win_rate=  9.8%  mean_shap=+0.0807
+2026-10-01 10:39:42,956 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:42,957 | INFO | root | DEPENDENCE: PCT_CONTACTS_CAN_CONTACT
+2026-10-01 10:39:42,957 | INFO | root |   <50%                         n=34     win_rate=  3.4%  mean_shap=-0.8908
+2026-10-01 10:39:42,957 | INFO | root |   50-99%                       n=479    win_rate= 31.7%  mean_shap=+0.7087
+2026-10-01 10:39:42,958 | INFO | root |   100%                         n=4813   win_rate=  8.4%  mean_shap=-0.1854  <- win rate and SHAP disagree
+2026-10-01 10:39:42,958 | INFO | root |   Missing / no data            n=1741   win_rate=  0.1%  mean_shap=-0.3488
+2026-10-01 10:39:42,973 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:42,973 | INFO | root | DEPENDENCE: JOBCAT_UNKNOWN_COUNT
+2026-10-01 10:39:42,974 | INFO | root |   (0.999, 3.0]                 n=1829   win_rate= 11.2%  mean_shap=-0.0648  <- win rate and SHAP disagree
+2026-10-01 10:39:42,974 | INFO | root |   (3.0, 1328.0]                n=649    win_rate= 22.9%  mean_shap=+0.4173
+2026-10-01 10:39:42,974 | INFO | root |   0                            n=4589   win_rate=  4.6%  mean_shap=-0.2497
+2026-10-01 10:39:42,984 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:42,984 | INFO | root | DEPENDENCE: RECORDTYPE_NAME
+2026-10-01 10:39:42,985 | INFO | root |   BREAKROOM OPPORTUNITY        n=65     win_rate=  7.7%  mean_shap=-0.2362
+2026-10-01 10:39:42,985 | INFO | root |   BUSINESS DEVELOPMENT         n=4865   win_rate=  9.5%  mean_shap=+0.0997
+2026-10-01 10:39:42,985 | INFO | root |   BUSINESS ESSENTIALS          n=4      win_rate= 75.0%  mean_shap=+0.2838  <- LOW CONFIDENCE
+2026-10-01 10:39:42,985 | INFO | root |   FURNITURE RECORD TYPE        n=1      win_rate=  0.0%  mean_shap=-1.1387  <- LOW CONFIDENCE
+2026-10-01 10:39:42,985 | INFO | root |   JAN/SAN                      n=1976   win_rate=  3.2%  mean_shap=-0.5698
+2026-10-01 10:39:42,985 | INFO | root |   PRINT RECORD TYPE            n=156    win_rate=  2.0%  mean_shap=-1.0516
+2026-10-01 10:39:42,996 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:42,996 | INFO | root | DEPENDENCE: JOBCAT_VERTICAL_ROLE_COUNT
+2026-10-01 10:39:42,997 | INFO | root |   (0.999, 5.0]                 n=1086   win_rate= 12.2%  mean_shap=-0.1763  <- win rate and SHAP disagree
+2026-10-01 10:39:42,997 | INFO | root |   (5.0, 70.0]                  n=431    win_rate= 20.7%  mean_shap=-0.4275  <- win rate and SHAP disagree
+2026-10-01 10:39:42,997 | INFO | root |   0                            n=5550   win_rate=  6.0%  mean_shap=+0.0685  <- win rate and SHAP disagree
+2026-10-01 10:39:43,012 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,013 | INFO | root | DEPENDENCE: JOBCAT_EXECUTIVE_COUNT
+2026-10-01 10:39:43,013 | INFO | root |   (0.999, 3.0]                 n=2176   win_rate= 11.7%  mean_shap=-0.0025  <- win rate and SHAP disagree
+2026-10-01 10:39:43,014 | INFO | root |   (3.0, 98.0]                  n=815    win_rate= 11.3%  mean_shap=-0.2238  <- win rate and SHAP disagree
+2026-10-01 10:39:43,014 | INFO | root |   0                            n=4076   win_rate=  5.7%  mean_shap=+0.0071  <- win rate and SHAP disagree
+2026-10-01 10:39:43,030 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,030 | INFO | root | DEPENDENCE: JOBCAT_IT_COUNT
+2026-10-01 10:39:43,031 | INFO | root |   (0.999, 3.0]                 n=1778   win_rate= 11.1%  mean_shap=+0.0223
+2026-10-01 10:39:43,031 | INFO | root |   (3.0, 160.0]                 n=743    win_rate= 17.9%  mean_shap=-0.1872  <- win rate and SHAP disagree
+2026-10-01 10:39:43,032 | INFO | root |   0                            n=4546   win_rate=  5.2%  mean_shap=+0.0265  <- win rate and SHAP disagree
+2026-10-01 10:39:43,046 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,046 | INFO | root | DEPENDENCE: DAYS_IN_SUSPECT
+2026-10-01 10:39:43,047 | INFO | root |   <30 days                     n=3988   win_rate=  9.5%  mean_shap=+0.0231
+2026-10-01 10:39:43,047 | INFO | root |   30-60 days                   n=1773   win_rate=  3.2%  mean_shap=-0.0806
+2026-10-01 10:39:43,048 | INFO | root |   60-90 days                   n=670    win_rate=  6.5%  mean_shap=-0.1134
+2026-10-01 10:39:43,048 | INFO | root |   90-180 days                  n=518    win_rate=  7.8%  mean_shap=-0.1013
+2026-10-01 10:39:43,049 | INFO | root |   180+ days                    n=118    win_rate= 13.5%  mean_shap=-0.0386  <- win rate and SHAP disagree
+2026-10-01 10:39:43,061 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,061 | INFO | root | DEPENDENCE: JOBCAT_PEOPLE_GOVERNANCE_COUNT
+2026-10-01 10:39:43,062 | INFO | root |   (0.999, 2.0]                 n=1142   win_rate= 15.9%  mean_shap=+0.0517
+2026-10-01 10:39:43,062 | INFO | root |   (2.0, 61.0]                  n=427    win_rate= 15.8%  mean_shap=-0.1021  <- win rate and SHAP disagree
+2026-10-01 10:39:43,062 | INFO | root |   0                            n=5498   win_rate=  6.0%  mean_shap=-0.0205
+2026-10-01 10:39:43,078 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,078 | INFO | root | DEPENDENCE: JOBCAT_MARKETING_COUNT
+2026-10-01 10:39:43,079 | INFO | root |   (0.999, 2.0]                 n=823    win_rate= 13.0%  mean_shap=-0.0071  <- win rate and SHAP disagree
+2026-10-01 10:39:43,079 | INFO | root |   (2.0, 62.0]                  n=328    win_rate= 13.2%  mean_shap=-0.4186  <- win rate and SHAP disagree
+2026-10-01 10:39:43,080 | INFO | root |   0                            n=5916   win_rate=  7.2%  mean_shap=+0.0129  <- win rate and SHAP disagree
+2026-10-01 10:39:43,093 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,093 | INFO | root | DEPENDENCE: IS_REMOTE_GEO
+2026-10-01 10:39:43,094 | INFO | root |   Not Remote Geo               n=7046   win_rate=  8.2%  mean_shap=+0.0029
+2026-10-01 10:39:43,094 | INFO | root |   Remote Geo                   n=21     win_rate=  0.0%  mean_shap=-0.8528
+2026-10-01 10:39:43,106 | INFO | root | Saved reports\suspect_insights.csv
+2026-10-01 10:39:43,111 | INFO | src.models.train | Loaded prospect_plus model from models\prospect_plus_model.joblib (trained 2026-10-01T10:37:39, 64 features)
+2026-10-01 10:39:43,426 | INFO | root | ======================================================================
+2026-10-01 10:39:43,427 | INFO | root | PROSPECT_PLUS — baseline win rate 12.0% (compare every bin against this)
+2026-10-01 10:39:43,437 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,437 | INFO | root | DEPENDENCE: AMOUNT
+2026-10-01 10:39:43,438 | INFO | root |   $0 (no amount yet)           n=1439   win_rate=  0.3%  mean_shap=-2.0222
+2026-10-01 10:39:43,438 | INFO | root |   1-5K                         n=273    win_rate= 20.5%  mean_shap=-1.0736  <- win rate and SHAP disagree
+2026-10-01 10:39:43,438 | INFO | root |   5K-100K                      n=739    win_rate= 33.0%  mean_shap=+0.5284
+2026-10-01 10:39:43,439 | INFO | root |   100K-750K                    n=221    win_rate=  7.7%  mean_shap=-0.3024
+2026-10-01 10:39:43,439 | INFO | root |   750K+                        n=21     win_rate= 14.3%  mean_shap=-0.4283  <- win rate and SHAP disagree
+2026-10-01 10:39:43,449 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,449 | INFO | root | DEPENDENCE: MAX_STAGE_REACHED
+2026-10-01 10:39:43,450 | INFO | root |   2 (Prospect)                 n=2086   win_rate=  2.5%  mean_shap=-1.2939
+2026-10-01 10:39:43,450 | INFO | root |   3 (Engaged)                  n=392    win_rate= 27.6%  mean_shap=+0.1839
+2026-10-01 10:39:43,450 | INFO | root |   4 (Negotiating)              n=117    win_rate= 69.2%  mean_shap=+1.9304
+2026-10-01 10:39:43,451 | INFO | root |   5 (Contracting)              n=98     win_rate= 84.7%  mean_shap=+2.8496
+2026-10-01 10:39:43,461 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,461 | INFO | root | DEPENDENCE: acct_meet_share
+2026-10-01 10:39:43,461 | INFO | root |   0 (none)                     n=1579   win_rate=  4.2%  mean_shap=-0.9567
+2026-10-01 10:39:43,462 | INFO | root |   low (0-30%)                  n=300    win_rate= 66.7%  mean_shap=+1.3868
+2026-10-01 10:39:43,462 | INFO | root |   mid (30-60%)                 n=20     win_rate= 55.0%  mean_shap=+1.4276
+2026-10-01 10:39:43,462 | INFO | root |   high (60%+)                  n=2      win_rate= 50.0%  mean_shap=+1.3688  <- LOW CONFIDENCE
+2026-10-01 10:39:43,463 | INFO | root |   Missing / no data            n=792    win_rate=  5.7%  mean_shap=-0.5212
+2026-10-01 10:39:43,472 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,472 | INFO | root | DEPENDENCE: AMOUNT_BUCKET
+2026-10-01 10:39:43,473 | INFO | root |   $0                           n=1439   win_rate=  0.3%  mean_shap=-1.1806
+2026-10-01 10:39:43,473 | INFO | root |   1-5K                         n=398    win_rate= 18.8%  mean_shap=+0.3076
+2026-10-01 10:39:43,474 | INFO | root |   100K-750K                    n=168    win_rate=  7.1%  mean_shap=-1.0883
+2026-10-01 10:39:43,474 | INFO | root |   5K-100K                      n=672    win_rate= 34.2%  mean_shap=+0.3727
+2026-10-01 10:39:43,474 | INFO | root |   750K+                        n=16     win_rate= 18.8%  mean_shap=-0.5003  <- win rate and SHAP disagree
+2026-10-01 10:39:43,487 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,487 | INFO | root | DEPENDENCE: SECTOR
+2026-10-01 10:39:43,488 | INFO | root |   Healthcare - Hospitals       n=34     win_rate=  8.8%  mean_shap=-0.5539
+2026-10-01 10:39:43,488 | INFO | root |   Healthcare - Non Acute       n=460    win_rate= 18.9%  mean_shap=+0.2212
+2026-10-01 10:39:43,488 | INFO | root |   Healthcare - Others          n=24     win_rate= 20.8%  mean_shap=+0.5317
+2026-10-01 10:39:43,488 | INFO | root |   Public Sector - Higher Education n=140    win_rate= 12.1%  mean_shap=-0.6370  <- win rate and SHAP disagree
+2026-10-01 10:39:43,489 | INFO | root |   Public Sector - K-12         n=488    win_rate= 15.4%  mean_shap=-0.2218  <- win rate and SHAP disagree
+2026-10-01 10:39:43,489 | INFO | root |   Public Sector - Local Gov    n=288    win_rate= 25.0%  mean_shap=+0.6871
+2026-10-01 10:39:43,489 | INFO | root |   Public Sector - Others       n=123    win_rate= 13.8%  mean_shap=+0.4349
+2026-10-01 10:39:43,489 | INFO | root |   Unclassified - Review        n=1136   win_rate=  4.2%  mean_shap=-1.0163
+2026-10-01 10:39:43,504 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,504 | INFO | root | DEPENDENCE: CYCLE_LENGTH_DAYS
+2026-10-01 10:39:43,505 | INFO | root |   <30 days                     n=1671   win_rate=  6.5%  mean_shap=-0.4386
+2026-10-01 10:39:43,505 | INFO | root |   30-60 days                   n=336    win_rate= 10.4%  mean_shap=+0.1920  <- win rate and SHAP disagree
+2026-10-01 10:39:43,506 | INFO | root |   60-90 days                   n=257    win_rate= 15.6%  mean_shap=+0.2802
+2026-10-01 10:39:43,506 | INFO | root |   90-180 days                  n=301    win_rate= 19.9%  mean_shap=+0.2525
+2026-10-01 10:39:43,506 | INFO | root |   180+ days                    n=128    win_rate= 62.5%  mean_shap=+0.3104
+2026-10-01 10:39:43,524 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,524 | INFO | root | DEPENDENCE: HEADCOUNT
+2026-10-01 10:39:43,524 | INFO | root |   (-0.001, 25.0]               n=779    win_rate=  9.6%  mean_shap=+0.3954  <- win rate and SHAP disagree
+2026-10-01 10:39:43,525 | INFO | root |   (25.0, 81.0]                 n=571    win_rate= 14.7%  mean_shap=+0.2527
+2026-10-01 10:39:43,525 | INFO | root |   (582.0, 355519.0]            n=673    win_rate=  9.8%  mean_shap=-0.7652
+2026-10-01 10:39:43,525 | INFO | root |   (81.0, 582.0]                n=670    win_rate= 14.8%  mean_shap=-0.4310  <- win rate and SHAP disagree
+2026-10-01 10:39:43,535 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,535 | INFO | root | DEPENDENCE: DOMINANT_LEADSOURCE
+2026-10-01 10:39:43,536 | INFO | root |   BU_SITES                     n=605    win_rate= 15.2%  mean_shap=+0.1862
+2026-10-01 10:39:43,536 | INFO | root |   Call Day                     n=2      win_rate=  0.0%  mean_shap=-0.2781  <- LOW CONFIDENCE
+2026-10-01 10:39:43,537 | INFO | root |   Cold Call                    n=1      win_rate=  0.0%  mean_shap=-0.0337  <- LOW CONFIDENCE
+2026-10-01 10:39:43,537 | INFO | root |   Customer Service Inquiry     n=1      win_rate=  0.0%  mean_shap=-0.1732  <- LOW CONFIDENCE
+2026-10-01 10:39:43,537 | INFO | root |   D&B                          n=5      win_rate=  0.0%  mean_shap=-0.2115  <- LOW CONFIDENCE
+2026-10-01 10:39:43,537 | INFO | root |   Data Axle                    n=55     win_rate= 16.4%  mean_shap=+0.2605
+2026-10-01 10:39:43,538 | INFO | root |   DataAxle                     n=6      win_rate=  0.0%  mean_shap=-0.1815  <- LOW CONFIDENCE
+2026-10-01 10:39:43,538 | INFO | root |   Definitive                   n=70     win_rate= 15.7%  mean_shap=-0.0408  <- win rate and SHAP disagree
+2026-10-01 10:39:43,538 | INFO | root |   EVERSTRING                   n=1      win_rate=  0.0%  mean_shap=-0.6074  <- LOW CONFIDENCE
+2026-10-01 10:39:43,538 | INFO | root |   Found on Own                 n=2      win_rate=  0.0%  mean_shap=-0.1684  <- LOW CONFIDENCE
+2026-10-01 10:39:43,538 | INFO | root |   Google                       n=1      win_rate=  0.0%  mean_shap=-0.0275  <- LOW CONFIDENCE
+2026-10-01 10:39:43,539 | INFO | root |   Handle Pull                  n=2      win_rate=  0.0%  mean_shap=-0.0631  <- LOW CONFIDENCE
+2026-10-01 10:39:43,539 | INFO | root |   LG: PS Charter Schools       n=1      win_rate=100.0%  mean_shap=+0.4123  <- LOW CONFIDENCE
+2026-10-01 10:39:43,539 | INFO | root |   Lead Generation              n=9      win_rate= 33.3%  mean_shap=-0.9906  <- LOW CONFIDENCE
+2026-10-01 10:39:43,539 | INFO | root |   LinkedIn Sales Navigator     n=2      win_rate=  0.0%  mean_shap=-0.0895  <- LOW CONFIDENCE
+2026-10-01 10:39:43,540 | INFO | root |   MDR                          n=266    win_rate= 18.4%  mean_shap=-0.0767  <- win rate and SHAP disagree
+2026-10-01 10:39:43,540 | INFO | root |   Marketing Generated          n=2      win_rate=  0.0%  mean_shap=-0.0293  <- LOW CONFIDENCE
+2026-10-01 10:39:43,540 | INFO | root |   Member List                  n=1      win_rate=  0.0%  mean_shap=-1.2513  <- LOW CONFIDENCE
+2026-10-01 10:39:43,540 | INFO | root |   NSA HD Blitz                 n=1      win_rate=  0.0%  mean_shap=-0.1165  <- LOW CONFIDENCE
+2026-10-01 10:39:43,540 | INFO | root |   Other                        n=489    win_rate= 14.7%  mean_shap=+0.2421
+2026-10-01 10:39:43,541 | INFO | root |   Prospect Desk                n=5      win_rate= 20.0%  mean_shap=+0.3507  <- LOW CONFIDENCE
+2026-10-01 10:39:43,541 | INFO | root |   Referral                     n=1      win_rate=  0.0%  mean_shap=-0.1647  <- LOW CONFIDENCE
+2026-10-01 10:39:43,541 | INFO | root |   SA.com                       n=182    win_rate= 12.6%  mean_shap=+0.1531
+2026-10-01 10:39:43,541 | INFO | root |   SASI                         n=2      win_rate=  0.0%  mean_shap=-0.2045  <- LOW CONFIDENCE
+2026-10-01 10:39:43,541 | INFO | root |   StaplesAdvantage.com         n=6      win_rate=  0.0%  mean_shap=-0.2544  <- LOW CONFIDENCE
+2026-10-01 10:39:43,542 | INFO | root |   Tradeshows                   n=1      win_rate=  0.0%  mean_shap=-0.0323  <- LOW CONFIDENCE
+2026-10-01 10:39:43,542 | INFO | root |   Unknown                      n=215    win_rate=  0.5%  mean_shap=-0.4936
+2026-10-01 10:39:43,542 | INFO | root |   ZoomInfo                     n=759    win_rate=  8.2%  mean_shap=-0.4406
+2026-10-01 10:39:43,554 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,554 | INFO | root | DEPENDENCE: ACTIVE_CONTACT_COUNT
+2026-10-01 10:39:43,555 | INFO | root |   0                            n=215    win_rate=  0.5%  mean_shap=-0.9234
+2026-10-01 10:39:43,555 | INFO | root |   1-2                          n=411    win_rate=  4.6%  mean_shap=-0.5855
+2026-10-01 10:39:43,556 | INFO | root |   3-5                          n=465    win_rate=  9.9%  mean_shap=-0.1221
+2026-10-01 10:39:43,556 | INFO | root |   6+                           n=1602   win_rate= 16.1%  mean_shap=+0.0717
+2026-10-01 10:39:43,568 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,568 | INFO | root | DEPENDENCE: acct_meet_share_stage2
+2026-10-01 10:39:43,569 | INFO | root |   (0.00099, 0.0236]            n=67     win_rate= 65.7%  mean_shap=+0.0437
+2026-10-01 10:39:43,569 | INFO | root |   (0.0236, 0.0883]             n=67     win_rate= 67.2%  mean_shap=+0.1821
+2026-10-01 10:39:43,569 | INFO | root |   (0.0883, 1.0]                n=67     win_rate= 65.7%  mean_shap=+0.1363
+2026-10-01 10:39:43,569 | INFO | root |   0                            n=1315   win_rate=  4.0%  mean_shap=-0.3230
+2026-10-01 10:39:43,570 | INFO | root |   Missing / no data            n=1177   win_rate= 11.8%  mean_shap=+0.0565  <- win rate and SHAP disagree
+2026-10-01 10:39:43,589 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,590 | INFO | root | DEPENDENCE: JOBCAT_OPERATIONS_COUNT
+2026-10-01 10:39:43,590 | INFO | root |   (-0.001, 1.0]                n=928    win_rate=  5.3%  mean_shap=-0.2451
+2026-10-01 10:39:43,590 | INFO | root |   (1.0, 3.0]                   n=499    win_rate= 10.2%  mean_shap=-0.2104
+2026-10-01 10:39:43,591 | INFO | root |   (3.0, 9.0]                   n=648    win_rate= 12.0%  mean_shap=-0.0332
+2026-10-01 10:39:43,591 | INFO | root |   (9.0, 546.0]                 n=618    win_rate= 23.6%  mean_shap=+0.2414
+2026-10-01 10:39:43,605 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,605 | INFO | root | DEPENDENCE: PCT_CONTACTS_CAN_CONTACT
+2026-10-01 10:39:43,606 | INFO | root |   <50%                         n=18     win_rate=  5.6%  mean_shap=+1.0007  <- win rate and SHAP disagree
+2026-10-01 10:39:43,606 | INFO | root |   50-99%                       n=270    win_rate= 35.6%  mean_shap=+0.5351
+2026-10-01 10:39:43,606 | INFO | root |   100%                         n=2190   win_rate= 10.3%  mean_shap=-0.1492
+2026-10-01 10:39:43,607 | INFO | root |   Missing / no data            n=215    win_rate=  0.5%  mean_shap=-0.1325
+2026-10-01 10:39:43,622 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,623 | INFO | root | DEPENDENCE: acct_total_activity
+2026-10-01 10:39:43,623 | INFO | root |   (-0.001, 4.0]                n=1388   win_rate=  4.1%  mean_shap=-0.2001
+2026-10-01 10:39:43,623 | INFO | root |   (27.0, 6587.0]               n=663    win_rate= 24.1%  mean_shap=+0.1624
+2026-10-01 10:39:43,624 | INFO | root |   (4.0, 27.0]                  n=642    win_rate= 16.7%  mean_shap=-0.1031  <- win rate and SHAP disagree
+2026-10-01 10:39:43,644 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,644 | INFO | root | DEPENDENCE: JOBCAT_FINANCE_PROCUREMENT_COUNT
+2026-10-01 10:39:43,644 | INFO | root |   (-0.001, 1.0]                n=1638   win_rate=  8.9%  mean_shap=-0.1597
+2026-10-01 10:39:43,645 | INFO | root |   (1.0, 3.0]                   n=475    win_rate= 17.5%  mean_shap=+0.1342
+2026-10-01 10:39:43,645 | INFO | root |   (3.0, 2864.0]                n=580    win_rate= 16.6%  mean_shap=+0.1087
+2026-10-01 10:39:43,659 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,659 | INFO | root | DEPENDENCE: JOBCAT_UNKNOWN_COUNT
+2026-10-01 10:39:43,660 | INFO | root |   (0.999, 3.0]                 n=816    win_rate= 13.8%  mean_shap=-0.1109  <- win rate and SHAP disagree
+2026-10-01 10:39:43,660 | INFO | root |   (3.0, 1328.0]                n=342    win_rate= 27.2%  mean_shap=+0.2128
+2026-10-01 10:39:43,660 | INFO | root |   0                            n=1535   win_rate=  7.7%  mean_shap=-0.1518
+2026-10-01 10:39:43,674 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,674 | INFO | root | DEPENDENCE: ACCT_CADENCE_COUNT_STAGE2
+2026-10-01 10:39:43,675 | INFO | root |   (0.999, 8.0]                 n=322    win_rate=  8.7%  mean_shap=-0.2556
+2026-10-01 10:39:43,675 | INFO | root |   (35.0, 745.0]                n=274    win_rate= 13.9%  mean_shap=-0.3708  <- win rate and SHAP disagree
+2026-10-01 10:39:43,676 | INFO | root |   (8.0, 35.0]                  n=259    win_rate= 14.7%  mean_shap=-0.3500  <- win rate and SHAP disagree
+2026-10-01 10:39:43,676 | INFO | root |   0                            n=1838   win_rate= 12.0%  mean_shap=+0.0730  <- win rate and SHAP disagree
+2026-10-01 10:39:43,688 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,688 | INFO | root | DEPENDENCE: acct_call_share_stage3
+2026-10-01 10:39:43,689 | INFO | root |   (-0.001, 0.025]              n=170    win_rate= 55.9%  mean_shap=+0.3650
+2026-10-01 10:39:43,689 | INFO | root |   (0.025, 0.25]                n=89     win_rate= 61.8%  mean_shap=+0.0538
+2026-10-01 10:39:43,690 | INFO | root |   (0.25, 1.0]                  n=80     win_rate= 20.0%  mean_shap=-0.7532  <- win rate and SHAP disagree
+2026-10-01 10:39:43,690 | INFO | root |   Missing / no data            n=2354   win_rate=  6.7%  mean_shap=-0.0737
+2026-10-01 10:39:43,702 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,702 | INFO | root | DEPENDENCE: BACKWARD_MOVE_COUNT
+2026-10-01 10:39:43,703 | INFO | root |   0                            n=2604   win_rate= 12.2%  mean_shap=+0.0416
+2026-10-01 10:39:43,703 | INFO | root |   1                            n=62     win_rate= 11.3%  mean_shap=-1.1300
+2026-10-01 10:39:43,703 | INFO | root |   2                            n=27     win_rate=  0.0%  mean_shap=-0.6949
+2026-10-01 10:39:43,712 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,713 | INFO | root | DEPENDENCE: VERTICAL
+2026-10-01 10:39:43,713 | INFO | root |   CM                           n=359    win_rate=  5.6%  mean_shap=+0.0121  <- win rate and SHAP disagree
+2026-10-01 10:39:43,714 | INFO | root |   FS                           n=771    win_rate=  3.6%  mean_shap=-0.1500
+2026-10-01 10:39:43,714 | INFO | root |   HC                           n=518    win_rate= 18.3%  mean_shap=+0.0081
+2026-10-01 10:39:43,715 | INFO | root |   PRINT                        n=6      win_rate=  0.0%  mean_shap=-0.3703  <- LOW CONFIDENCE
+2026-10-01 10:39:43,715 | INFO | root |   PS                           n=1039   win_rate= 17.4%  mean_shap=+0.0240
+2026-10-01 10:39:43,727 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,727 | INFO | root | DEPENDENCE: JOBCAT_VERTICAL_ROLE_COUNT
+2026-10-01 10:39:43,728 | INFO | root |   (0.999, 2.0]                 n=381    win_rate= 15.0%  mean_shap=-0.0571  <- win rate and SHAP disagree
+2026-10-01 10:39:43,729 | INFO | root |   (2.0, 5.0]                   n=193    win_rate= 11.9%  mean_shap=-0.0752
+2026-10-01 10:39:43,729 | INFO | root |   (5.0, 70.0]                  n=279    win_rate= 23.3%  mean_shap=+0.1062
+2026-10-01 10:39:43,729 | INFO | root |   0                            n=1840   win_rate=  9.7%  mean_shap=-0.0380
+2026-10-01 10:39:43,743 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,743 | INFO | root | DEPENDENCE: acct_call_share
+2026-10-01 10:39:43,744 | INFO | root |   0 (none)                     n=759    win_rate=  9.1%  mean_shap=-0.0940
+2026-10-01 10:39:43,744 | INFO | root |   low (0-30%)                  n=680    win_rate= 27.6%  mean_shap=+0.0127
+2026-10-01 10:39:43,744 | INFO | root |   mid (30-60%)                 n=212    win_rate=  6.6%  mean_shap=-0.0320
+2026-10-01 10:39:43,745 | INFO | root |   high (60%+)                  n=250    win_rate=  3.2%  mean_shap=+0.0439  <- win rate and SHAP disagree
+2026-10-01 10:39:43,745 | INFO | root |   Missing / no data            n=792    win_rate=  5.7%  mean_shap=+0.0302  <- win rate and SHAP disagree
+2026-10-01 10:39:43,759 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,759 | INFO | root | DEPENDENCE: ACCT_EMAIL_COUNT_STAGE2
+2026-10-01 10:39:43,760 | INFO | root |   (0.999, 5.0]                 n=430    win_rate=  9.8%  mean_shap=-0.0210
+2026-10-01 10:39:43,760 | INFO | root |   (25.0, 775.0]                n=405    win_rate= 17.3%  mean_shap=+0.0835
+2026-10-01 10:39:43,760 | INFO | root |   (5.0, 25.0]                  n=409    win_rate= 14.7%  mean_shap=+0.0833
+2026-10-01 10:39:43,760 | INFO | root |   0                            n=1449   win_rate= 10.5%  mean_shap=-0.0334
+2026-10-01 10:39:43,775 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,775 | INFO | root | DEPENDENCE: ACCT_MEET_COUNT_STAGE2
+2026-10-01 10:39:43,776 | INFO | root |   (0.999, 2.0]                 n=169    win_rate= 65.1%  mean_shap=+0.0196
+2026-10-01 10:39:43,776 | INFO | root |   (2.0, 11.0]                  n=32     win_rate= 71.9%  mean_shap=+0.2605
+2026-10-01 10:39:43,776 | INFO | root |   0                            n=2492   win_rate=  7.7%  mean_shap=-0.0329
+2026-10-01 10:39:43,798 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,798 | INFO | root | DEPENDENCE: ACCT_TASK_COUNT_STAGE1
+2026-10-01 10:39:43,798 | INFO | root |   (0.999, 31.0]                n=128    win_rate= 17.2%  mean_shap=+0.1443
+2026-10-01 10:39:43,799 | INFO | root |   0                            n=2565   win_rate= 11.8%  mean_shap=-0.0206
+2026-10-01 10:39:43,806 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,806 | INFO | root | DEPENDENCE: RECORDTYPE_NAME
+2026-10-01 10:39:43,807 | INFO | root |   BREAKROOM OPPORTUNITY        n=26     win_rate=  7.7%  mean_shap=-0.3846
+2026-10-01 10:39:43,807 | INFO | root |   BUSINESS DEVELOPMENT         n=1906   win_rate= 15.3%  mean_shap=+0.0130
+2026-10-01 10:39:43,807 | INFO | root |   BUSINESS ESSENTIALS          n=4      win_rate= 75.0%  mean_shap=-0.0362  <- LOW CONFIDENCE
+2026-10-01 10:39:43,807 | INFO | root |   FURNITURE RECORD TYPE        n=1      win_rate=  0.0%  mean_shap=-0.1247  <- LOW CONFIDENCE
+2026-10-01 10:39:43,808 | INFO | root |   JAN/SAN                      n=746    win_rate=  3.6%  mean_shap=-0.0402
+2026-10-01 10:39:43,808 | INFO | root |   PRINT RECORD TYPE            n=10     win_rate= 10.0%  mean_shap=-0.2338  <- LOW CONFIDENCE
+2026-10-01 10:39:43,820 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,820 | INFO | root | DEPENDENCE: ACCT_CALL_COUNT_STAGE3
+2026-10-01 10:39:43,820 | INFO | root |   (0.999, 2.0]                 n=123    win_rate= 35.8%  mean_shap=+0.0231
+2026-10-01 10:39:43,821 | INFO | root |   (2.0, 528.0]                 n=54     win_rate= 59.3%  mean_shap=+0.0459
+2026-10-01 10:39:43,821 | INFO | root |   0                            n=2516   win_rate=  9.9%  mean_shap=-0.0234
+2026-10-01 10:39:43,830 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,830 | INFO | root | DEPENDENCE: acct_meet_share_stage5
+2026-10-01 10:39:43,830 | INFO | root |   (-0.001, 0.00494]            n=33     win_rate= 84.8%  mean_shap=+0.0349
+2026-10-01 10:39:43,831 | INFO | root |   (0.00494, 0.111]             n=16     win_rate= 81.2%  mean_shap=+0.1233
+2026-10-01 10:39:43,831 | INFO | root |   (0.111, 1.0]                 n=16     win_rate= 87.5%  mean_shap=-0.0185  <- win rate and SHAP disagree
+2026-10-01 10:39:43,831 | INFO | root |   Missing / no data            n=2628   win_rate= 10.2%  mean_shap=-0.0221
+2026-10-01 10:39:43,842 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,843 | INFO | root | DEPENDENCE: acct_call_share_stage2
+2026-10-01 10:39:43,843 | INFO | root |   (-0.001, 0.0244]             n=759    win_rate=  9.7%  mean_shap=-0.0255
+2026-10-01 10:39:43,844 | INFO | root |   (0.0244, 0.25]               n=382    win_rate= 21.5%  mean_shap=-0.0245  <- win rate and SHAP disagree
+2026-10-01 10:39:43,844 | INFO | root |   (0.25, 1.0]                  n=375    win_rate=  7.7%  mean_shap=-0.0265
+2026-10-01 10:39:43,844 | INFO | root |   Missing / no data            n=1177   win_rate= 11.8%  mean_shap=-0.0027
+2026-10-01 10:39:43,855 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,856 | INFO | root | DEPENDENCE: acct_call_share_stage1
+2026-10-01 10:39:43,856 | INFO | root |   (-0.001, 0.0227]             n=216    win_rate= 18.1%  mean_shap=-0.0125  <- win rate and SHAP disagree
+2026-10-01 10:39:43,856 | INFO | root |   (0.0227, 0.5]                n=119    win_rate= 29.4%  mean_shap=+0.0364
+2026-10-01 10:39:43,857 | INFO | root |   (0.5, 1.0]                   n=97     win_rate= 17.5%  mean_shap=+0.0641
+2026-10-01 10:39:43,857 | INFO | root |   Missing / no data            n=2261   win_rate= 10.3%  mean_shap=-0.0166
+2026-10-01 10:39:43,868 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,868 | INFO | root | DEPENDENCE: ACCT_CALL_COUNT_STAGE1
+2026-10-01 10:39:43,868 | INFO | root |   (0.999, 26.0]                n=222    win_rate= 24.8%  mean_shap=+0.0446
+2026-10-01 10:39:43,869 | INFO | root |   0                            n=2471   win_rate= 10.9%  mean_shap=-0.0147
+2026-10-01 10:39:43,878 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,878 | INFO | root | DEPENDENCE: ACCT_EMAIL_COUNT_STAGE3
+2026-10-01 10:39:43,879 | INFO | root |   (0.999, 4.0]                 n=116    win_rate= 41.4%  mean_shap=+0.0055
+2026-10-01 10:39:43,879 | INFO | root |   (10.333, 1717.0]             n=98     win_rate= 63.3%  mean_shap=+0.0343
+2026-10-01 10:39:43,879 | INFO | root |   (4.0, 10.333]                n=80     win_rate= 63.7%  mean_shap=+0.0307
+2026-10-01 10:39:43,880 | INFO | root |   0                            n=2399   win_rate=  6.8%  mean_shap=-0.0171
+2026-10-01 10:39:43,890 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,890 | INFO | root | DEPENDENCE: ACCT_CALL_COUNT_STAGE2
+2026-10-01 10:39:43,891 | INFO | root |   (0.999, 3.0]                 n=736    win_rate= 13.0%  mean_shap=-0.0035  <- win rate and SHAP disagree
+2026-10-01 10:39:43,891 | INFO | root |   (3.0, 31.0]                  n=208    win_rate= 19.7%  mean_shap=+0.0424
+2026-10-01 10:39:43,891 | INFO | root |   0                            n=1749   win_rate= 10.7%  mean_shap=-0.0121
+2026-10-01 10:39:43,901 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,902 | INFO | root | DEPENDENCE: acct_meet_share_stage3
+2026-10-01 10:39:43,902 | INFO | root |   (0.0019099999999999998, 0.087] n=50     win_rate= 64.0%  mean_shap=-0.1565  <- win rate and SHAP disagree
+2026-10-01 10:39:43,902 | INFO | root |   (0.087, 0.2]                 n=56     win_rate= 78.6%  mean_shap=+0.0061
+2026-10-01 10:39:43,902 | INFO | root |   (0.2, 1.0]                   n=42     win_rate= 81.0%  mean_shap=+0.0298
+2026-10-01 10:39:43,902 | INFO | root |   0                            n=191    win_rate= 29.3%  mean_shap=-0.0798  <- win rate and SHAP disagree
+2026-10-01 10:39:43,902 | INFO | root |   Missing / no data            n=2354   win_rate=  6.7%  mean_shap=+0.0045  <- win rate and SHAP disagree
+2026-10-01 10:39:43,910 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,910 | INFO | root | DEPENDENCE: ACCT_CADENCE_COUNT_STAGE1
+2026-10-01 10:39:43,911 | INFO | root |   (0.999, 4.0]                 n=40     win_rate= 15.0%  mean_shap=-0.1244  <- win rate and SHAP disagree
+2026-10-01 10:39:43,911 | INFO | root |   (4.0, 9.333]                 n=28     win_rate= 25.0%  mean_shap=+0.0307
+2026-10-01 10:39:43,911 | INFO | root |   (9.333, 100.0]               n=34     win_rate= 32.4%  mean_shap=+0.0230
+2026-10-01 10:39:43,912 | INFO | root |   0                            n=2591   win_rate= 11.6%  mean_shap=-0.0031
+2026-10-01 10:39:43,922 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,922 | INFO | root | DEPENDENCE: ACCT_EMAIL_COUNT_STAGE4
+2026-10-01 10:39:43,922 | INFO | root |   (0.999, 6.0]                 n=38     win_rate= 60.5%  mean_shap=+0.0099
+2026-10-01 10:39:43,923 | INFO | root |   (13.0, 5537.0]               n=35     win_rate= 80.0%  mean_shap=+0.0815
+2026-10-01 10:39:43,923 | INFO | root |   (6.0, 13.0]                  n=33     win_rate= 84.8%  mean_shap=+0.0810
+2026-10-01 10:39:43,923 | INFO | root |   0                            n=2587   win_rate=  9.5%  mean_shap=-0.0091
+2026-10-01 10:39:43,932 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,933 | INFO | root | DEPENDENCE: ACCT_TASK_COUNT_STAGE5
+2026-10-01 10:39:43,933 | INFO | root |   (0.999, 2.0]                 n=22     win_rate= 86.4%  mean_shap=+0.1522
+2026-10-01 10:39:43,933 | INFO | root |   (2.0, 3.0]                   n=5      win_rate=100.0%  mean_shap=+0.1956  <- LOW CONFIDENCE
+2026-10-01 10:39:43,933 | INFO | root |   (3.0, 16.0]                  n=9      win_rate= 66.7%  mean_shap=+0.0676  <- LOW CONFIDENCE
+2026-10-01 10:39:43,933 | INFO | root |   0                            n=2657   win_rate= 11.1%  mean_shap=-0.0082
+2026-10-01 10:39:43,942 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,942 | INFO | root | DEPENDENCE: ACCT_TASK_COUNT_STAGE2
+2026-10-01 10:39:43,942 | INFO | root |   (0.999, 2.0]                 n=370    win_rate= 13.2%  mean_shap=-0.0291  <- win rate and SHAP disagree
+2026-10-01 10:39:43,942 | INFO | root |   (2.0, 44.0]                  n=87     win_rate=  9.2%  mean_shap=-0.0279
+2026-10-01 10:39:43,943 | INFO | root |   0                            n=2236   win_rate= 11.9%  mean_shap=+0.0044  <- win rate and SHAP disagree
+2026-10-01 10:39:43,954 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,954 | INFO | root | DEPENDENCE: JOBCAT_IT_COUNT
+2026-10-01 10:39:43,954 | INFO | root |   (0.999, 3.0]                 n=861    win_rate= 12.8%  mean_shap=-0.0042  <- win rate and SHAP disagree
+2026-10-01 10:39:43,954 | INFO | root |   (3.0, 145.0]                 n=422    win_rate= 19.7%  mean_shap=-0.0226  <- win rate and SHAP disagree
+2026-10-01 10:39:43,955 | INFO | root |   0                            n=1410   win_rate=  9.3%  mean_shap=+0.0007  <- win rate and SHAP disagree
+2026-10-01 10:39:43,967 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,967 | INFO | root | DEPENDENCE: JOBCAT_EXECUTIVE_COUNT
+2026-10-01 10:39:43,967 | INFO | root |   (-0.001, 1.0]                n=1832   win_rate= 11.0%  mean_shap=-0.0030
+2026-10-01 10:39:43,967 | INFO | root |   (1.0, 2.0]                   n=316    win_rate= 13.0%  mean_shap=-0.0101  <- win rate and SHAP disagree
+2026-10-01 10:39:43,967 | INFO | root |   (2.0, 98.0]                  n=545    win_rate= 14.9%  mean_shap=-0.0057  <- win rate and SHAP disagree
+2026-10-01 10:39:43,976 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,976 | INFO | root | DEPENDENCE: JOBCAT_PEOPLE_GOVERNANCE_COUNT
+2026-10-01 10:39:43,976 | INFO | root |   (0.999, 2.0]                 n=562    win_rate= 18.3%  mean_shap=-0.0103  <- win rate and SHAP disagree
+2026-10-01 10:39:43,976 | INFO | root |   (2.0, 33.0]                  n=195    win_rate= 18.5%  mean_shap=-0.0087  <- win rate and SHAP disagree
+2026-10-01 10:39:43,977 | INFO | root |   0                            n=1936   win_rate=  9.6%  mean_shap=-0.0029
+2026-10-01 10:39:43,986 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,986 | INFO | root | DEPENDENCE: ACCT_MEET_COUNT_STAGE3
+2026-10-01 10:39:43,987 | INFO | root |   (0.999, 2.0]                 n=110    win_rate= 70.9%  mean_shap=+0.0082
+2026-10-01 10:39:43,987 | INFO | root |   (2.0, 113.0]                 n=38     win_rate= 84.2%  mean_shap=+0.0356
+2026-10-01 10:39:43,987 | INFO | root |   0                            n=2545   win_rate=  8.4%  mean_shap=-0.0054
+2026-10-01 10:39:43,998 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:43,999 | INFO | root | DEPENDENCE: acct_meet_share_stage1
+2026-10-01 10:39:43,999 | INFO | root |   (0.0039, 0.062]              n=11     win_rate= 81.8%  mean_shap=+0.0289  <- LOW CONFIDENCE
+2026-10-01 10:39:43,999 | INFO | root |   (0.062, 0.2]                 n=12     win_rate= 66.7%  mean_shap=-0.0239  <- LOW CONFIDENCE
+2026-10-01 10:39:44,000 | INFO | root |   (0.2, 0.714]                 n=10     win_rate= 40.0%  mean_shap=-0.0783  <- LOW CONFIDENCE
+2026-10-01 10:39:44,000 | INFO | root |   0                            n=399    win_rate= 17.5%  mean_shap=-0.0077  <- win rate and SHAP disagree
+2026-10-01 10:39:44,000 | INFO | root |   Missing / no data            n=2261   win_rate= 10.3%  mean_shap=-0.0030
+2026-10-01 10:39:44,015 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,015 | INFO | root | DEPENDENCE: acct_meet_share_stage4
+2026-10-01 10:39:44,016 | INFO | root |   (0.00151, 0.105]             n=18     win_rate= 72.2%  mean_shap=-0.0428  <- win rate and SHAP disagree
+2026-10-01 10:39:44,016 | INFO | root |   (0.105, 0.198]               n=17     win_rate= 94.1%  mean_shap=-0.0051  <- win rate and SHAP disagree
+2026-10-01 10:39:44,016 | INFO | root |   (0.198, 1.0]                 n=18     win_rate= 83.3%  mean_shap=+0.0126
+2026-10-01 10:39:44,016 | INFO | root |   0                            n=62     win_rate= 67.7%  mean_shap=-0.0151  <- win rate and SHAP disagree
+2026-10-01 10:39:44,016 | INFO | root |   Missing / no data            n=2578   win_rate=  9.2%  mean_shap=-0.0016
+2026-10-01 10:39:44,026 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,026 | INFO | root | DEPENDENCE: ACCT_TASK_COUNT_STAGE3
+2026-10-01 10:39:44,027 | INFO | root |   (0.999, 2.0]                 n=60     win_rate= 60.0%  mean_shap=-0.0256  <- win rate and SHAP disagree
+2026-10-01 10:39:44,027 | INFO | root |   (2.0, 198.0]                 n=27     win_rate= 37.0%  mean_shap=-0.0382  <- win rate and SHAP disagree
+2026-10-01 10:39:44,027 | INFO | root |   0                            n=2606   win_rate= 10.7%  mean_shap=+0.0021  <- win rate and SHAP disagree
+2026-10-01 10:39:44,038 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,038 | INFO | root | DEPENDENCE: ACCT_EMAIL_COUNT_STAGE5
+2026-10-01 10:39:44,039 | INFO | root |   (0.999, 4.0]                 n=21     win_rate= 90.5%  mean_shap=+0.0287
+2026-10-01 10:39:44,039 | INFO | root |   (13.0, 995.0]                n=20     win_rate= 75.0%  mean_shap=+0.0160
+2026-10-01 10:39:44,039 | INFO | root |   (4.0, 13.0]                  n=19     win_rate= 84.2%  mean_shap=+0.0134
+2026-10-01 10:39:44,039 | INFO | root |   0                            n=2633   win_rate= 10.4%  mean_shap=-0.0024
+2026-10-01 10:39:44,051 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,051 | INFO | root | DEPENDENCE: acct_call_share_stage5
+2026-10-01 10:39:44,051 | INFO | root |   (0.00468, 0.0833]            n=11     win_rate= 81.8%  mean_shap=+0.0059  <- LOW CONFIDENCE
+2026-10-01 10:39:44,051 | INFO | root |   (0.0833, 0.2]                n=10     win_rate= 90.0%  mean_shap=-0.0032  <- LOW CONFIDENCE
+2026-10-01 10:39:44,052 | INFO | root |   (0.2, 0.5]                   n=9      win_rate= 77.8%  mean_shap=-0.0036  <- LOW CONFIDENCE
+2026-10-01 10:39:44,052 | INFO | root |   0                            n=35     win_rate= 85.7%  mean_shap=+0.0269
+2026-10-01 10:39:44,052 | INFO | root |   Missing / no data            n=2628   win_rate= 10.2%  mean_shap=-0.0025
+2026-10-01 10:39:44,060 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,061 | INFO | root | DEPENDENCE: ACCT_EMAIL_COUNT_STAGE1
+2026-10-01 10:39:44,061 | INFO | root |   (0.999, 4.0]                 n=199    win_rate= 23.1%  mean_shap=-0.0027  <- win rate and SHAP disagree
+2026-10-01 10:39:44,062 | INFO | root |   (4.0, 228.0]                 n=91     win_rate= 28.6%  mean_shap=-0.0147  <- win rate and SHAP disagree
+2026-10-01 10:39:44,062 | INFO | root |   0                            n=2403   win_rate= 10.5%  mean_shap=-0.0003
+2026-10-01 10:39:44,073 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,073 | INFO | root | DEPENDENCE: JOBCAT_MARKETING_COUNT
+2026-10-01 10:39:44,073 | INFO | root |   (0.999, 2.0]                 n=394    win_rate= 15.2%  mean_shap=-0.0041  <- win rate and SHAP disagree
+2026-10-01 10:39:44,074 | INFO | root |   (2.0, 62.0]                  n=152    win_rate= 15.1%  mean_shap=-0.0041  <- win rate and SHAP disagree
+2026-10-01 10:39:44,074 | INFO | root |   0                            n=2147   win_rate= 11.2%  mean_shap=+0.0011  <- win rate and SHAP disagree
+2026-10-01 10:39:44,084 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,084 | INFO | root | DEPENDENCE: ACCT_LISTEMAIL_COUNT_STAGE2
+2026-10-01 10:39:44,085 | INFO | root |   (0.999, 4.0]                 n=85     win_rate=  7.1%  mean_shap=-0.0016
+2026-10-01 10:39:44,085 | INFO | root |   (4.0, 249.0]                 n=40     win_rate= 12.5%  mean_shap=+0.0158
+2026-10-01 10:39:44,085 | INFO | root |   0                            n=2568   win_rate= 12.2%  mean_shap=-0.0012  <- win rate and SHAP disagree
+2026-10-01 10:39:44,094 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,094 | INFO | root | DEPENDENCE: ACCT_CADENCE_COUNT_STAGE3
+2026-10-01 10:39:44,094 | INFO | root |   (0.999, 3.0]                 n=29     win_rate= 37.9%  mean_shap=-0.0088  <- win rate and SHAP disagree
+2026-10-01 10:39:44,095 | INFO | root |   (3.0, 6.0]                   n=13     win_rate= 38.5%  mean_shap=-0.0148  <- LOW CONFIDENCE
+2026-10-01 10:39:44,095 | INFO | root |   (6.0, 172.0]                 n=19     win_rate= 57.9%  mean_shap=-0.0186  <- win rate and SHAP disagree
+2026-10-01 10:39:44,095 | INFO | root |   0                            n=2632   win_rate= 11.3%  mean_shap=+0.0009  <- win rate and SHAP disagree
+2026-10-01 10:39:44,104 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,105 | INFO | root | DEPENDENCE: ACCT_TASK_COUNT_STAGE4
+2026-10-01 10:39:44,105 | INFO | root |   (0.999, 2.0]                 n=32     win_rate= 87.5%  mean_shap=+0.0004
+2026-10-01 10:39:44,105 | INFO | root |   (2.0, 147.0]                 n=11     win_rate= 63.6%  mean_shap=-0.0035  <- LOW CONFIDENCE
+2026-10-01 10:39:44,105 | INFO | root |   0                            n=2650   win_rate= 10.9%  mean_shap=+0.0001  <- win rate and SHAP disagree
+2026-10-01 10:39:44,114 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,114 | INFO | root | DEPENDENCE: IS_REMOTE_GEO
+2026-10-01 10:39:44,115 | INFO | root |   Not Remote Geo               n=2690   win_rate= 12.0%  mean_shap=+0.0000
+2026-10-01 10:39:44,115 | INFO | root |   Remote Geo                   n=3      win_rate=  0.0%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,124 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,124 | INFO | root | DEPENDENCE: ACCT_LISTEMAIL_COUNT_STAGE1
+2026-10-01 10:39:44,125 | INFO | root |   (0.999, 3.0]                 n=6      win_rate=  0.0%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,125 | INFO | root |   (3.0, 5.667]                 n=1      win_rate=  0.0%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,125 | INFO | root |   (5.667, 70.0]                n=4      win_rate= 25.0%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,125 | INFO | root |   0                            n=2682   win_rate= 12.0%  mean_shap=+0.0000
+2026-10-01 10:39:44,135 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,135 | INFO | root | DEPENDENCE: ACCT_CADENCE_COUNT_STAGE5
+2026-10-01 10:39:44,136 | INFO | root |   (0.999, 5.0]                 n=3      win_rate=100.0%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,136 | INFO | root |   (17.0, 60.0]                 n=3      win_rate= 66.7%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,136 | INFO | root |   (5.0, 17.0]                  n=2      win_rate= 50.0%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,136 | INFO | root |   0                            n=2685   win_rate= 11.8%  mean_shap=+0.0000
+2026-10-01 10:39:44,145 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,145 | INFO | root | DEPENDENCE: ACCT_CADENCE_COUNT_STAGE4
+2026-10-01 10:39:44,146 | INFO | root |   (0.999, 3.0]                 n=5      win_rate= 60.0%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,146 | INFO | root |   (15.333, 51.0]               n=4      win_rate= 50.0%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,146 | INFO | root |   (3.0, 15.333]                n=3      win_rate=100.0%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,146 | INFO | root |   0                            n=2681   win_rate= 11.8%  mean_shap=+0.0000
+2026-10-01 10:39:44,155 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,155 | INFO | root | DEPENDENCE: ACCT_LISTEMAIL_COUNT_STAGE5
+2026-10-01 10:39:44,155 | INFO | root |   0                            n=2690   win_rate= 12.0%  mean_shap=+0.0000
+2026-10-01 10:39:44,156 | INFO | root |   1                            n=2      win_rate= 50.0%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,156 | INFO | root |   19                           n=1      win_rate=100.0%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,166 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,166 | INFO | root | DEPENDENCE: ACCT_MEET_COUNT_STAGE1
+2026-10-01 10:39:44,167 | INFO | root |   (0.999, 10.0]                n=33     win_rate= 63.6%  mean_shap=+0.0000  <- win rate and SHAP disagree
+2026-10-01 10:39:44,167 | INFO | root |   0                            n=2660   win_rate= 11.4%  mean_shap=+0.0000
+2026-10-01 10:39:44,175 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,175 | INFO | root | DEPENDENCE: ACCT_CALL_COUNT_STAGE5
+2026-10-01 10:39:44,176 | INFO | root |   (0.999, 3.0]                 n=21     win_rate= 95.2%  mean_shap=+0.0000  <- win rate and SHAP disagree
+2026-10-01 10:39:44,176 | INFO | root |   (3.0, 51.0]                  n=9      win_rate= 55.6%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,176 | INFO | root |   0                            n=2663   win_rate= 11.2%  mean_shap=+0.0000
+2026-10-01 10:39:44,187 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,187 | INFO | root | DEPENDENCE: ACCT_CALL_COUNT_STAGE4
+2026-10-01 10:39:44,188 | INFO | root |   (0.999, 3.0]                 n=35     win_rate= 85.7%  mean_shap=+0.0000  <- win rate and SHAP disagree
+2026-10-01 10:39:44,188 | INFO | root |   (3.0, 21.0]                  n=16     win_rate= 75.0%  mean_shap=+0.0000  <- win rate and SHAP disagree
+2026-10-01 10:39:44,188 | INFO | root |   0                            n=2642   win_rate= 10.7%  mean_shap=+0.0000
+2026-10-01 10:39:44,196 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,197 | INFO | root | DEPENDENCE: ACCT_LISTEMAIL_COUNT_STAGE4
+2026-10-01 10:39:44,197 | INFO | root |   0                            n=2690   win_rate= 11.9%  mean_shap=+0.0000
+2026-10-01 10:39:44,197 | INFO | root |   1                            n=1      win_rate=100.0%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,198 | INFO | root |   3                            n=1      win_rate=100.0%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,198 | INFO | root |   49                           n=1      win_rate=100.0%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,206 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,206 | INFO | root | DEPENDENCE: ACCT_LISTEMAIL_COUNT_STAGE3
+2026-10-01 10:39:44,207 | INFO | root |   (0.999, 2.0]                 n=7      win_rate= 28.6%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,207 | INFO | root |   (2.0, 3.0]                   n=9      win_rate= 33.3%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,207 | INFO | root |   (3.0, 42.0]                  n=1      win_rate=100.0%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,207 | INFO | root |   0                            n=2676   win_rate= 11.9%  mean_shap=+0.0000
+2026-10-01 10:39:44,217 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,217 | INFO | root | DEPENDENCE: ACCT_MEET_COUNT_STAGE5
+2026-10-01 10:39:44,217 | INFO | root |   (0.999, 2.0]                 n=25     win_rate= 92.0%  mean_shap=+0.0000  <- win rate and SHAP disagree
+2026-10-01 10:39:44,218 | INFO | root |   (2.0, 9.0]                   n=8      win_rate= 62.5%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,218 | INFO | root |   0                            n=2660   win_rate= 11.1%  mean_shap=+0.0000
+2026-10-01 10:39:44,227 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,227 | INFO | root | DEPENDENCE: ACCT_MEET_COUNT_STAGE4
+2026-10-01 10:39:44,227 | INFO | root |   (0.999, 2.0]                 n=30     win_rate= 86.7%  mean_shap=+0.0000  <- win rate and SHAP disagree
+2026-10-01 10:39:44,228 | INFO | root |   (2.0, 3.0]                   n=8      win_rate= 75.0%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,228 | INFO | root |   (3.0, 14.0]                  n=15     win_rate= 80.0%  mean_shap=+0.0000  <- win rate and SHAP disagree
+2026-10-01 10:39:44,228 | INFO | root |   0                            n=2640   win_rate= 10.6%  mean_shap=+0.0000
+2026-10-01 10:39:44,237 | INFO | root | ----------------------------------------------------------------------
+2026-10-01 10:39:44,237 | INFO | root | DEPENDENCE: acct_call_share_stage4
+2026-10-01 10:39:44,238 | INFO | root |   (0.00133, 0.0698]            n=17     win_rate= 82.4%  mean_shap=+0.0000  <- win rate and SHAP disagree
+2026-10-01 10:39:44,238 | INFO | root |   (0.0698, 0.2]                n=20     win_rate= 95.0%  mean_shap=+0.0000  <- win rate and SHAP disagree
+2026-10-01 10:39:44,239 | INFO | root |   (0.2, 1.0]                   n=14     win_rate= 64.3%  mean_shap=+0.0000  <- LOW CONFIDENCE
+2026-10-01 10:39:44,239 | INFO | root |   0                            n=64     win_rate= 68.8%  mean_shap=+0.0000  <- win rate and SHAP disagree
+2026-10-01 10:39:44,240 | INFO | root |   Missing / no data            n=2578   win_rate=  9.2%  mean_shap=+0.0000
+2026-10-01 10:39:44,249 | INFO | root | Saved reports\prospect_plus_insights.csv

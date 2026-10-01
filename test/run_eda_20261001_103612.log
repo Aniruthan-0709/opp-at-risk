@@ -1,0 +1,52 @@
+2026-10-01 10:36:12,127 | INFO | root | Logging initialized for 'run_eda'. Writing to logs\run_eda_20261001_103612.log
+2026-10-01 10:36:12,232 | INFO | root | ======================================================================
+2026-10-01 10:36:12,233 | INFO | root | SUSPECT: 7067 rows, 3988 distinct opps, 17 features, 326 won opps -> 19.18 events per feature
+2026-10-01 10:36:12,237 | INFO | root | Sparse (>= 98% zero): 1
+2026-10-01 10:36:12,237 | INFO | root |   IS_REMOTE_GEO                            99.7% zero
+2026-10-01 10:36:12,238 | INFO | root | High missingness (>= 50% NaN): 0
+2026-10-01 10:36:12,247 | INFO | root | Redundant pairs (|r| >= 0.90): 0
+2026-10-01 10:36:12,247 | INFO | root | Cardinality VERTICAL             5 distinct values
+2026-10-01 10:36:12,248 | INFO | root | Cardinality SECTOR               8 distinct values
+2026-10-01 10:36:12,248 | INFO | root | Cardinality DOMINANT_LEADSOURCE  29 distinct values
+2026-10-01 10:36:12,248 | INFO | root | Cardinality RECORDTYPE_NAME      6 distinct values
+2026-10-01 10:36:12,281 | INFO | root | ======================================================================
+2026-10-01 10:36:12,281 | INFO | root | PROSPECT_PLUS: 2693 rows, 2693 distinct opps, 64 features, 324 won opps -> 5.06 events per feature
+2026-10-01 10:36:12,286 | INFO | root | Sparse (>= 98% zero): 14
+2026-10-01 10:36:12,287 | INFO | root |   IS_REMOTE_GEO                            99.9% zero
+2026-10-01 10:36:12,287 | INFO | root |   ACCT_TASK_COUNT_STAGE4                   98.4% zero
+2026-10-01 10:36:12,287 | INFO | root |   ACCT_TASK_COUNT_STAGE5                   98.7% zero
+2026-10-01 10:36:12,287 | INFO | root |   ACCT_CADENCE_COUNT_STAGE4                99.6% zero
+2026-10-01 10:36:12,287 | INFO | root |   ACCT_CADENCE_COUNT_STAGE5                99.7% zero
+2026-10-01 10:36:12,287 | INFO | root |   ACCT_LISTEMAIL_COUNT_STAGE1              99.6% zero
+2026-10-01 10:36:12,287 | INFO | root |   ACCT_LISTEMAIL_COUNT_STAGE3              99.4% zero
+2026-10-01 10:36:12,287 | INFO | root |   ACCT_LISTEMAIL_COUNT_STAGE4              99.9% zero
+2026-10-01 10:36:12,288 | INFO | root |   ACCT_LISTEMAIL_COUNT_STAGE5              99.9% zero
+2026-10-01 10:36:12,288 | INFO | root |   ACCT_CALL_COUNT_STAGE4                   98.1% zero
+2026-10-01 10:36:12,288 | INFO | root |   ACCT_CALL_COUNT_STAGE5                   98.9% zero
+2026-10-01 10:36:12,288 | INFO | root |   ACCT_MEET_COUNT_STAGE1                   98.8% zero
+2026-10-01 10:36:12,288 | INFO | root |   ACCT_MEET_COUNT_STAGE4                   98.0% zero
+2026-10-01 10:36:12,288 | INFO | root |   ACCT_MEET_COUNT_STAGE5                   98.8% zero
+2026-10-01 10:36:12,291 | INFO | root | High missingness (>= 50% NaN): 8
+2026-10-01 10:36:12,291 | INFO | root |   acct_call_share_stage1                   84.0% NaN
+2026-10-01 10:36:12,291 | INFO | root |   acct_call_share_stage3                   87.4% NaN
+2026-10-01 10:36:12,292 | INFO | root |   acct_call_share_stage4                   95.7% NaN
+2026-10-01 10:36:12,292 | INFO | root |   acct_call_share_stage5                   97.6% NaN
+2026-10-01 10:36:12,292 | INFO | root |   acct_meet_share_stage1                   84.0% NaN
+2026-10-01 10:36:12,292 | INFO | root |   acct_meet_share_stage3                   87.4% NaN
+2026-10-01 10:36:12,292 | INFO | root |   acct_meet_share_stage4                   95.7% NaN
+2026-10-01 10:36:12,292 | INFO | root |   acct_meet_share_stage5                   97.6% NaN
+2026-10-01 10:36:12,356 | INFO | root | Redundant pairs (|r| >= 0.90): 9
+2026-10-01 10:36:12,357 | INFO | root |   ACCT_LISTEMAIL_COUNT_STAGE4         <-> ACCT_LISTEMAIL_COUNT_STAGE5         r=0.995
+2026-10-01 10:36:12,357 | INFO | root |   ACCT_LISTEMAIL_COUNT_STAGE3         <-> ACCT_LISTEMAIL_COUNT_STAGE4         r=0.972
+2026-10-01 10:36:12,357 | INFO | root |   ACCT_LISTEMAIL_COUNT_STAGE3         <-> ACCT_LISTEMAIL_COUNT_STAGE5         r=0.971
+2026-10-01 10:36:12,357 | INFO | root |   acct_call_share                     <-> acct_call_share_stage2              r=0.964
+2026-10-01 10:36:12,357 | INFO | root |   ACCT_CALL_COUNT_STAGE3              <-> ACCT_MEET_COUNT_STAGE3              r=0.960
+2026-10-01 10:36:12,357 | INFO | root |   ACCT_CADENCE_COUNT_STAGE2           <-> ACCT_EMAIL_COUNT_STAGE2             r=0.938
+2026-10-01 10:36:12,357 | INFO | root |   ACCT_EMAIL_COUNT_STAGE4             <-> ACCT_EMAIL_COUNT_STAGE5             r=0.936
+2026-10-01 10:36:12,357 | INFO | root |   ACCT_EMAIL_COUNT_STAGE3             <-> ACCT_CALL_COUNT_STAGE3              r=0.912
+2026-10-01 10:36:12,357 | INFO | root |   ACCT_EMAIL_COUNT_STAGE3             <-> ACCT_MEET_COUNT_STAGE3              r=0.900
+2026-10-01 10:36:12,358 | INFO | root | Cardinality VERTICAL             5 distinct values
+2026-10-01 10:36:12,358 | INFO | root | Cardinality SECTOR               8 distinct values
+2026-10-01 10:36:12,359 | INFO | root | Cardinality DOMINANT_LEADSOURCE  28 distinct values
+2026-10-01 10:36:12,359 | INFO | root | Cardinality RECORDTYPE_NAME      6 distinct values
+2026-10-01 10:36:12,360 | INFO | root | Cardinality AMOUNT_BUCKET        5 distinct values
